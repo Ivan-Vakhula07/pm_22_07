@@ -1,3 +1,4 @@
+/*
 // gulpfile.js (ФІНАЛЬНА ВЕРСІЯ: Готова до запуску)
 
 var gulp = require('gulp');
@@ -29,22 +30,22 @@ gulp.task('server', function(){
 
 // Watch files for changes
 gulp.task('watch', function() {
-    gulp.watch('scss/**/*', gulp.series('compile-scss', browser.reload));
-    gulp.watch('sass/**/*', gulp.series('compile-sass', browser.reload));
-    gulp.watch('js/**/*', gulp.series('copy-js', browser.reload));
-    gulp.watch('images/**/*', gulp.series('copy-images', browser.reload));
-    gulp.watch('html/pages/**/*', gulp.series('compile-html'));
-    gulp.watch(['html/{layouts,includes,helpers,data}/**/*'], gulp.series('compile-html:reset','compile-html'));
-    gulp.watch(['./src/{layouts,partials,helpers,data}/**/*'], panini.refresh);
+    gulp.watch('scss/!**!/!*', gulp.series('compile-scss', browser.reload));
+    gulp.watch('sass/!**!/!*', gulp.series('compile-sass', browser.reload));
+    gulp.watch('js/!**!/!*', gulp.series('copy-js', browser.reload));
+    gulp.watch('images/!**!/!*', gulp.series('copy-images', browser.reload));
+    gulp.watch('html/pages/!**!/!*', gulp.series('compile-html'));
+    gulp.watch(['html/{layouts,includes,helpers,data}/!**!/!*'], gulp.series('compile-html:reset','compile-html'));
+    gulp.watch(['./src/{layouts,partials,helpers,data}/!**!/!*'], panini.refresh);
 });
 
 // Erases the dist folder
 gulp.task('reset', function(done) {
-    rimraf('bulma/*');
-    rimraf('scss/*');
-    rimraf('assets/css/*');
-    rimraf('assets/fonts/*');
-    rimraf('images/*');
+    rimraf('bulma/!*');
+    rimraf('scss/!*');
+    rimraf('assets/css/!*');
+    rimraf('assets/fonts/!*');
+    rimraf('images/!*');
     done();
 });
 
@@ -57,17 +58,17 @@ gulp.task('clean', function(done) {
 // Copy Bulma filed into Bulma development folder
 gulp.task('setupBulma', function() {
     var streams = merge();
-    streams.add(gulp.src([nodepath + 'bulma/*.sass']).pipe(gulp.dest('bulma/')));
-    streams.add(gulp.src([nodepath + 'bulma/**/*.sass']).pipe(gulp.dest('bulma/')));
+    streams.add(gulp.src([nodepath + 'bulma/!*.sass']).pipe(gulp.dest('bulma/')));
+    streams.add(gulp.src([nodepath + 'bulma/!**!/!*.sass']).pipe(gulp.dest('bulma/')));
     return streams;
 });
 
 // Copy static assets
 gulp.task('copy', function(done) {
     // Copy other external font and data assets
-    gulp.src(['assets/fonts/**/*'], {allowEmpty: true}).pipe(gulp.dest('_site/assets/fonts/'));
+    gulp.src(['assets/fonts/!**!/!*'], {allowEmpty: true}).pipe(gulp.dest('_site/assets/fonts/'));
     // Копіювання шрифтів Slick
-    gulp.src([nodepath + 'slick-carousel/slick/fonts/**/*'], {allowEmpty: true}).pipe(gulp.dest('_site/assets/css/fonts/'));
+    gulp.src([nodepath + 'slick-carousel/slick/fonts/!**!/!*'], {allowEmpty: true}).pipe(gulp.dest('_site/assets/css/fonts/'));
     done();
 });
 
@@ -117,7 +118,7 @@ gulp.task('compile-scss', function () {
 
 // Compile Html
 gulp.task('compile-html', function() {
-    return gulp.src('html/pages/**/*.html')
+    return gulp.src('html/pages/!**!/!*.html')
         .pipe(panini({
         root: 'html/pages/',
         layouts: 'html/layouts/',
@@ -169,13 +170,13 @@ gulp.task('compile-js', function() {
 
 //Copy Theme js to production site
 gulp.task('copy-js', function() {
-    return gulp.src('js/**/*.js')
+    return gulp.src('js/!**!/!*.js')
         .pipe(gulp.dest('./_site/assets/js/'));
 });
 
 //Copy images to production site
 gulp.task('copy-images', function() {
-    return gulp.src('images/**/*')
+    return gulp.src('images/!**!/!*')
         .pipe(gulp.dest('./_site/assets/images/'));
 });
 
@@ -211,4 +212,45 @@ gulp.task('build',
 );
 
 // default
-gulp.task('default', series('build', parallel('server', 'watch')));
+gulp.task('default', series('build', parallel('server', 'watch')));*/
+
+const {src, dest, series, parallel, watch} = require('gulp');
+const fileInclude = require('gulp-file-include');
+const browserSync = require('browser-sync').create();
+
+
+const html_task = () => {
+    return src('src/app/index.html')
+        .pipe(fileInclude({prefix: '@@', basepath: '@file'}))
+        .pipe(dest('dist'));
+}
+
+const serve_task = (done) => {
+    browserSync.init({
+        server: {baseDir: 'dist'},
+        open: true,
+        notify: false
+    });
+    done();
+}
+
+const reload = (done) => {
+    browserSync.reload();
+    done();
+}
+
+const watch_task = () => {
+    watch('src/app/**/*.html', series(html_task, reload));
+    /*watch(paths.scss, series(scss_task, reload));
+    watch(paths.js, series(js_task, reload));
+    watch(paths.imgs, series(imgs_task, reload));*/
+}
+
+const build = series(
+    html_task,
+    /*series(bootstrapCSS, bootstrapJS),
+    parallel(scss_task, js_task, imgs_task)*/
+);
+
+exports.build = build;
+exports.default = series(build, serve_task, watch_task);
