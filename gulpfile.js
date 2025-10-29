@@ -1,68 +1,95 @@
 const { src, dest, series, parallel, watch } = require('gulp');
-const fileInclude = require('gulp-file-include');
 const sass = require('gulp-sass')(require('sass'));
-const cleanCSS = require('gulp-clean-css');
-const uglify = require('gulp-uglify-es').default;
+const cssnano = require('gulp-cssnano');
+const rename = require('gulp-rename');
+const uglify = require('gulp-uglify');
 const concat = require('gulp-concat');
+const imagemin = require('gulp-imagemin');
 const browserSync = require('browser-sync').create();
-const postcss = require('gulp-postcss');
-const autoprefixer = require('autoprefixer');
+const fileInclude = require('gulp-file-include');
+const { rm } = require('fs/promises');
 
-// === HTML ===
-function html() {
-  return src('src/app/**/*.html') // усі html у src/app і підпапках
+// 🧹 Clean
+const clean = async (cb) => {
+    try {
+        await rm('dist', { recursive: true, force: true });
+        console.log('Папка dist успішно видалена.');
+    } catch (err) {
+        if (err.code !== 'ENOENT') {
+            console.error('Помилка при видаленні папки dist:', err);
+        }
+    }
+    cb();
+};
+
+// 📄 HTML
+// ВИПРАВЛЕНО: Включаємо index.html та всі компоненти
+const html = () => src(['src/app/*.html', 'src/app/components/**/*.html'])
     .pipe(fileInclude({ prefix: '@@', basepath: '@file' }))
     .pipe(dest('dist'))
     .pipe(browserSync.stream());
-}
 
-// === SCSS ===
-function scss() {
-  return src('src/app/scss/**/*.scss') // усі scss
+// 🎨 Styles
+// ВИПРАВЛЕНО: Шлях до scss у src/app/
+const styles = () => src('src/app/scss/**/*.scss')
     .pipe(sass().on('error', sass.logError))
-    .pipe(postcss([autoprefixer()]))
-    .pipe(cleanCSS())
+    .pipe(cssnano())
+    .pipe(rename({ suffix: '.min' }))
     .pipe(dest('dist/css'))
     .pipe(browserSync.stream());
-}
 
-// === JS ===
-function js() {
-  return src('src/app/js/**/*.js') // усі js
-    .pipe(concat('script.min.js'))
-    .pipe(uglify())
+// 💻 Scripts
+// ВИПРАВЛЕНО: Шлях до js у src/app/
+const scripts = () => src('src/app/js/**/*.js')
+    .pipe(concat('main.min.js'))
+    .pipe(uglify().on('error', e => {
+        console.log(e.toString());
+        this.emit('end');
+    }))
     .pipe(dest('dist/js'))
     .pipe(browserSync.stream());
-}
 
-// === IMAGES ===
-function imgs() {
-  return src('src/imgs/**/*')
-    .pipe(dest('dist/imgs'))
+// 🖼 Images - ТУТ УЖЕ ПРАВИЛЬНО
+const images = () => src('src/app/images/**/*')
+    .pipe(imagemin())
+    .pipe(dest('dist/images'));
+
+// 🌟 Favicon
+const favicon = () => src('src/favicon.ico', { allowEmpty: true })
+    .pipe(dest('dist'));
+
+// === ТАСКИ ДЛЯ BOOTSTRAP ===
+
+const bootstrapCSS = () => src('node_modules/bootstrap/dist/css/bootstrap.min.css')
+    .pipe(dest('dist/css'))
     .pipe(browserSync.stream());
-}
 
-// === SERVER ===
-function serve(done) {
-  browserSync.init({
-    server: { baseDir: 'dist' },
-    notify: false,
-    open: true
-  });
-  done();
-}
+const bootstrapJS = () => src('node_modules/bootstrap/dist/js/bootstrap.bundle.min.js')
+    .pipe(dest('dist/js'))
+    .pipe(browserSync.stream());
 
-// === WATCH ===
-function watcher() {
-  watch('src/app/**/*.html', html); // усі html
-  watch('src/app/scss/**/*.scss', scss); // усі scss
-  watch('src/app/js/**/*.js', js); // усі js
-  watch('src/imgs/**/*', imgs); // усі зображення
-}
+// 🔄 Server
+const sync = done => {
+    browserSync.init({ server: { baseDir: 'dist' } });
+    done();
+};
 
-// === DEFAULT TASK ===
+// 👀 Watcher
+const watcher = () => {
+    // ВИПРАВЛЕНО: Спостерігаємо за всіма HTML-файлами в src/app/
+    watch('src/app/**/*.html', html);
+    // ВИПРАВЛЕНО: Спостерігаємо за scss у src/app/
+    watch('src/app/scss/**/*.scss', styles);
+    // ВИПРАВЛЕНО: Спостерігаємо за js у src/app/
+    watch('src/app/js/**/*.js', scripts);
+    // ТУТ УЖЕ ПРАВИЛЬНО
+    watch('src/app/images/**/*', images);
+};
+
+// 🏁 Default
 exports.default = series(
-  parallel(html, scss, js, imgs),
-  serve,
-  watcher
+    clean,
+    parallel(html, styles, scripts, images, favicon, bootstrapCSS, bootstrapJS),
+    sync,
+    watcher
 );
