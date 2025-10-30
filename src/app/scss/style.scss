@@ -12,8 +12,9 @@ $hobby-border-width: 2px;
 $circle-size: 110px;
 
 // --- ЗМІННІ ДЛЯ ЛІНІЙ ---
-$subtle-line-color: #e0e0e0;       // Дуже світло-сірий для горизонтальних ліній
-$vertical-divider-color: #d8d8d8; // Світло-сірий для вертикальної лінії
+$subtle-line-color: #e0e0e0;
+$vertical-divider-color: #d8d8d8;
+$top-line-height: 15px;
 
 // --- ЗМІННІ ДЛЯ СТИЛІЗАЦІЇ ЗАГЛУШКИ ТА ФОНУ СТОРІНКИ ---
 $page-bg-color: #F0F0F0;
@@ -36,7 +37,7 @@ body {
 // === СМУГА З ТЕКСТОМ "IMAGE NOT INCLUDED" ===
 .image-not-included-header {
     background-color: $page-bg-color;
-    color: $text-color-header;
+    color: white; // ФІКС: Текст білий
     font-size: 1.2rem;
     font-weight: 700;
     letter-spacing: 2px;
@@ -56,16 +57,16 @@ body {
     box-shadow: none !important;
 }
 
-// === CV-ОБГОРТКА + ВЕРТИКАЛЬНА ЛІНІЯ ===
+// === CV-ОБГОРТКА ===
 .cv-wrapper {
     background-color: white;
     min-height: 900px;
     position: relative;
-    padding-top: 0;
+    // padding-top: $top-line-height; // ЦЕЙ ВІДСТУП ТЕЖ МОЖНА ПРИБРАТИ, ЯКЩО НЕМАЄ ВЕРХНЬОЇ СМУГИ
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
     border: none !important;
+    border-right: 1px solid $vertical-divider-color;
 
-    // Псевдоелемент для фонового ефекту зліва
     &::before {
         content: "";
         position: absolute;
@@ -77,18 +78,19 @@ body {
         z-index: 0;
     }
 
-    /* ВЕРТИКАЛЬНА ЛІНІЯ-РОЗДІЛЬНИК */
+    /* ВЕРХНЯ ПОМАРАНЧЕВА ЛІНІЯ - ВИДАЛЕНО */
+    /*
     &::after {
         content: "";
         position: absolute;
-        // 4/12 від ширини (ширина col-md-4)
-        left: calc((100% / 12) * 4);
         top: 0;
-        bottom: 0;
-        width: 1px;
-        background-color: $vertical-divider-color;
+        left: 0;
+        width: 100%;
+        height: $top-line-height;
+        background-color: $accent-color;
         z-index: 10;
     }
+    */
 }
 
 
@@ -99,7 +101,7 @@ body {
     padding: 0 !important;
     z-index: 1;
 
-    > article, .address-block-top { padding: 30px; }
+    > article { padding: 30px; }
 
     h4 { font-weight: 700; color: $text-color-dark; font-size: 1.1rem; margin-bottom: 1rem; }
     p, ul, li { color: $text-color-dark; font-size: 0.9rem; line-height: 1.4; }
@@ -114,7 +116,7 @@ body {
     width: 100%;
     z-index: 5;
 
-    margin-top: 0;
+    // margin-top: $top-line-height; // ЦЕЙ ВІДСТУП ТЕЖ МОЖНА ПРИБРАТИ АБО ЗМЕНШИТИ
     padding-top: 25px;
     padding-bottom: 25px;
 
@@ -133,7 +135,7 @@ body {
     }
 }
 
-// === Фото та ефекти ===
+// === Фото та ефекти (ВКЛЮЧАЮЧИ ДВІ ПОМАРАНЧЕВІ СМУГИ) ===
 .photo-wrapper {
     height: 350px;
     position: relative;
@@ -142,29 +144,27 @@ body {
     box-shadow: 10px 0 10px -5px rgba(0, 0, 0, 0.1);
 
     &::before {
+        // Верхній помаранчевий прямокутник (смуга)
         content: "";
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
-        height: $bar-height;
+        height: 15px;
         background-color: $accent-color;
         z-index: 10;
     }
 
     &::after {
+        // Нижній помаранчевий прямокутник (смуга)
         content: "";
         position: absolute;
-        top: $bar-height;
+        bottom: 0;
         left: 0;
         width: 100%;
-        height: calc(100% - #{$bar-height});
-
-        background: linear-gradient(to right,
-                                    rgba(255, 255, 255, 0.2),
-                                    rgba(255, 255, 255, 0));
-
-        z-index: 9;
+        height: 15px;
+        background-color: $accent-color;
+        z-index: 10;
     }
 
     img {
@@ -174,7 +174,7 @@ body {
         filter: grayscale(100%) brightness(0.9) contrast(1.1);
         mix-blend-mode: multiply;
         display: block;
-        margin-top: $bar-height;
+        margin-top: 0;
         position: relative;
         z-index: 8;
     }
@@ -184,14 +184,15 @@ body {
 .contact-block {
     margin-top: 30px;
     .contact-info {
-        p { margin-bottom: 10px; }
         strong { font-weight: 700; color: $text-color-dark; display: block; }
-        p { color: #555; font-size: 0.9rem; }
+        p { color: #555; font-size: 0.9rem; line-height: 1.4; }
     }
 }
 
 .reference-block {
-    /* РИСКА ВИДАЛЕНА */
+    margin-top: 0;
+    padding-top: 30px;
+
     h4 { margin-bottom: 10px; }
     p {
         margin-bottom: 0;
@@ -203,8 +204,8 @@ body {
 
 // === СТИЛІ ХОБІ (HOBBIES) ===
 .hobby-block {
-    /* РИСКА ВИДАЛЕНА */
     padding-bottom: 40px !important;
+    padding-top: 40px !important;
 
     .hobby-icons {
         margin-top: 20px !important;
@@ -232,7 +233,7 @@ body {
             vertical-align: middle;
         }
 
-        /* СТИЛЬ ДЛЯ ШАХОВОГО КОНЯ (КОНТУР) */
+        /* КОНТУРНИЙ СТИЛЬ ДЛЯ ШАХОВОГО КОНЯ */
         .chess-icon {
             color: transparent;
             -webkit-text-stroke: 1px $accent-color;
@@ -258,19 +259,13 @@ body {
 }
 
 
-// 3. СТИЛІ ПРАВОЇ КОЛОНКИ (col-md-8) + ГОРИЗОНТАЛЬНІ ЛІНІЇ
+// 3. СТИЛІ ПРАВОЇ КОЛОНКИ (col-md-8)
 .main-content {
     padding: 50px 50px !important;
-
-    /* ГОРИЗОНТАЛЬНІ ЛІНІЇ МІЖ СЕКЦІЯМИ (КРІМ ОСТАННЬОЇ) */
-    > article:not(:last-child) {
-        border-bottom: 1px solid $subtle-line-color;
-        padding-bottom: 30px;
-        margin-bottom: 40px !important;
-    }
 }
 
-// === ЗАГОЛОВОК CV (JHON ABIRAR) ===
+// ... (Стилі правої колонки: заголовки, досвід, освіта, експертиза) ...
+
 .cv-header-title {
     margin-top: 15px;
     margin-bottom: 45px !important;
@@ -307,7 +302,6 @@ body {
     }
 }
 
-// Заголовки секцій
 article h3 {
     font-weight: 700;
     font-size: 1.2rem;
@@ -316,7 +310,6 @@ article h3 {
     margin-bottom: 15px !important;
 }
 
-// СТИЛЬ: Опис About Me
 .text-about-me {
     color: $text-color-light;
     font-size: 1rem;
@@ -324,7 +317,6 @@ article h3 {
     font-weight: 500;
 }
 
-// === БЛОК ДОСВІДУ ТА ОСВІТИ + ВНУТРІШНІ ПУНКТИРНІ ЛІНІЇ ===
 .education-block {
     p { margin-bottom: 0; }
     .text-muted {
@@ -334,18 +326,15 @@ article h3 {
     }
 }
 
-// Вертикальний роздільник досвіду
 .experience-item {
     position: relative;
     padding-left: 0;
     margin-bottom: 30px !important;
-
-    /* ПУНКТИРНА ЛІНІЯ */
     border-bottom: 1px dashed $subtle-line-color;
 
     &:last-child {
         margin-bottom: 0 !important;
-        border-bottom: none; /* ВИДАЛЯЄМО ЛІНІЮ ПІД ОСТАННІМ ЕЛЕМЕНТОМ */
+        border-bottom: none;
     }
 
     &::before {
@@ -355,7 +344,6 @@ article h3 {
     p strong { font-size: 1rem; font-weight: 700; }
 }
 
-// Стилі тексту досвіду
 .text-darkened-location {
     color: $text-color-dark !important;
     font-weight: 700;
@@ -371,7 +359,6 @@ article h3 {
     margin-top: 5px !important;
 }
 
-// Стилі Bootstrap-компонентів
 .badge.bg-danger {
     background-color: $accent-color !important;
     font-weight: 600;
@@ -381,7 +368,6 @@ article h3 {
     text-transform: uppercase;
 }
 
-// === СТИЛІ КРУГОВОГО ПРОГРЕС-БАРА (EXPERTISЕ) ===
 .expertise-row {
     margin-top: 20px;
 }
@@ -436,10 +422,8 @@ article h3 {
 }
 
 
-// КЛАСИ ДЛЯ ПРОГРЕСУ (ВІДСОТКИ) - ФІНАЛЬНА ЛОГІКА
 $start-angle: 0deg;
 
-// --- 50% ---
 .skill-level-50 {
     &::after {
         $fill-degrees: 180deg;
@@ -453,7 +437,6 @@ $start-angle: 0deg;
     }
 }
 
-// --- 45% ---
 .skill-level-45 {
     &::after {
         $fill-degrees: 162deg;
@@ -467,7 +450,6 @@ $start-angle: 0deg;
     }
 }
 
-// --- 70% ---
 .skill-level-70 {
     &::after {
         $fill-degrees: 252deg;
@@ -481,7 +463,6 @@ $start-angle: 0deg;
     }
 }
 
-// --- 90% ---
 .skill-level-90 {
     &::after {
         $fill-degrees: 324deg;
