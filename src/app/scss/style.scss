@@ -2,7 +2,7 @@
 $accent-color: #F86E4A;
 $text-color-dark: #333;
 $text-color-light: #777;
-$progress-bg: #e6e6e6;
+$progress-bg: #e6e6e6; // Колір незаповненої частини кола
 $bg-light-grey: #FFFFFF;
 $cv-width: 950px;
 $bar-height: 15px;
@@ -20,6 +20,9 @@ $top-line-height: 15px;
 $page-bg-color: #F0F0F0;
 $text-color-header: #fff;
 
+// 👇 ЗМІННІ ДЛЯ ЛЕГКОГО ГРАДІЄНТА
+$gradient-start: rgba(255, 255, 255, 1); // Чистий білий (справа зверху)
+$gradient-end: rgba(248, 248, 248, 1);   // Ледь помітний сіруватий (зліва знизу)
 
 // === СТИЛІ ДЛЯ ВСІЄЇ СТОРІНКИ ===
 body {
@@ -37,10 +40,10 @@ body {
 // === СМУГА З ТЕКСТОМ "IMAGE NOT INCLUDED" ===
 .image-not-included-header {
     background-color: $page-bg-color;
-    color: white; // ФІКС: Текст білий
+    color: white;
     font-size: 1.2rem;
     font-weight: 700;
-    letter-spacing: 2px;
+    letter-spacing: 15px;
     text-transform: uppercase;
     text-align: center;
     padding: 20px 0;
@@ -59,10 +62,11 @@ body {
 
 // === CV-ОБГОРТКА ===
 .cv-wrapper {
-    background-color: white;
+    background-image: linear-gradient(to bottom left, $gradient-start, $gradient-end);
+    background-size: cover;
+
     min-height: 900px;
     position: relative;
-    // padding-top: $top-line-height; // ЦЕЙ ВІДСТУП ТЕЖ МОЖНА ПРИБРАТИ, ЯКЩО НЕМАЄ ВЕРХНЬОЇ СМУГИ
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
     border: none !important;
     border-right: 1px solid $vertical-divider-color;
@@ -77,20 +81,6 @@ body {
         background-color: rgba(255, 255, 255, 0.8);
         z-index: 0;
     }
-
-    /* ВЕРХНЯ ПОМАРАНЧЕВА ЛІНІЯ - ВИДАЛЕНО */
-    /*
-    &::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: $top-line-height;
-        background-color: $accent-color;
-        z-index: 10;
-    }
-    */
 }
 
 
@@ -116,7 +106,6 @@ body {
     width: 100%;
     z-index: 5;
 
-    // margin-top: $top-line-height; // ЦЕЙ ВІДСТУП ТЕЖ МОЖНА ПРИБРАТИ АБО ЗМЕНШИТИ
     padding-top: 25px;
     padding-bottom: 25px;
 
@@ -272,15 +261,15 @@ body {
 
     .title-name {
         font-weight: 700;
-        letter-spacing: 5px;
-        font-size: 2.8rem;
+        letter-spacing: 7px;
+        font-size: 3.1rem;
         line-height: 0.8;
     }
 
     .title-surname {
         font-weight: 900;
-        letter-spacing: 5px;
-        font-size: 3.2rem;
+        letter-spacing: 7px;
+        font-size: 3.5rem;
         line-height: 0.8;
         margin-top: 5px;
     }
@@ -372,18 +361,24 @@ article h3 {
     margin-top: 20px;
 }
 
+// === СТИЛІ КІЛЕЦЬ НАВИКІВ (SKILL CIRCLES) ===
 .skill-circle {
     position: relative;
     width: $circle-size;
     height: $circle-size;
     border-radius: 50%;
-    background: $accent-color;
+    background: $progress-bg; /* Сірий колір для незаповненої частини */
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     margin: 0 auto 5px;
+
+    /* КЛЮЧОВЕ ЗМІНЕННЯ 1: Обертаємо весь блок.
+    Це зміщує 0deg (12 годин) на 3 години (правий бік),
+    зберігаючи напрямок заповнення проти годинникової стрілки (за замовчуванням). */
+    transform: rotateZ(-90deg);
 
     &::before {
         content: '';
@@ -406,6 +401,8 @@ article h3 {
         color: $text-color-dark;
         font-weight: 600;
         margin-bottom: 0;
+        /* КЛЮЧОВЕ ЗМІНЕННЯ 2: Компенсуємо обертання кола, щоб текст був горизонтальним. */
+        transform: rotateZ(90deg);
     }
 
     &::after {
@@ -417,61 +414,85 @@ article h3 {
         height: 100%;
         border-radius: 50%;
         z-index: 1;
-        filter: drop-shadow(0 0 0 $accent-color);
     }
 }
 
 
-$start-angle: 0deg;
+// 👇 ЛОГІКА ДЛЯ ЗАПОВНЕННЯ: from 0deg (12 годин), але сам елемент повернуто на -90deg (3 години).
 
-.skill-level-50 {
+.skill-level-80 {
     &::after {
-        $fill-degrees: 180deg;
-        $empty-degrees: 360deg - $fill-degrees;
+        $fill-degrees: 288deg; // 80% кола
         background: conic-gradient(
-            from $start-angle,
-            $progress-bg 0deg $empty-degrees,
-            $accent-color $empty-degrees 360deg
+            from 0deg, // Починаємо з 12 годин (точка, яка тепер знаходиться на 3 годинах)
+            $accent-color 0deg $fill-degrees,
+            $progress-bg $fill-degrees 360deg
         );
-        transform: rotateZ($fill-degrees * -1);
     }
 }
 
-.skill-level-45 {
+.skill-level-75 {
     &::after {
-        $fill-degrees: 162deg;
-        $empty-degrees: 360deg - $fill-degrees;
+        $fill-degrees: 270deg; // 75% кола
         background: conic-gradient(
-            from $start-angle,
-            $progress-bg 0deg $empty-degrees,
-            $accent-color $empty-degrees 360deg
+            from 0deg,
+            $accent-color 0deg $fill-degrees,
+            $progress-bg $fill-degrees 360deg
         );
-        transform: rotateZ($fill-degrees * -1);
+    }
+}
+.skill-level-65 {
+    &::after {
+        $fill-degrees: 234deg; // 65% кола
+        background: conic-gradient(
+            from 0deg,
+            $accent-color 0deg $fill-degrees,
+            $progress-bg $fill-degrees 360deg
+        );
     }
 }
 
 .skill-level-70 {
     &::after {
-        $fill-degrees: 252deg;
-        $empty-degrees: 360deg - $fill-degrees;
+        $fill-degrees: 252deg; // 70% кола
         background: conic-gradient(
-            from $start-angle,
-            $progress-bg 0deg $empty-degrees,
-            $accent-color $empty-degrees 360deg
+            from 0deg,
+            $accent-color 0deg $fill-degrees,
+            $progress-bg $fill-degrees 360deg
         );
-        transform: rotateZ($fill-degrees * -1);
+    }
+}
+
+// *** ІСНУЮЧІ РІВНІ (збережені на випадок потреби) ***
+.skill-level-50 {
+    &::after {
+        $fill-degrees: 180deg; // 50% кола
+        background: conic-gradient(
+            from 0deg,
+            $accent-color 0deg $fill-degrees,
+            $progress-bg $fill-degrees 360deg
+        );
+    }
+}
+
+.skill-level-45 {
+    &::after {
+        $fill-degrees: 162deg; // 45% кола
+        background: conic-gradient(
+            from 0deg,
+            $accent-color 0deg $fill-degrees,
+            $progress-bg $fill-degrees 360deg
+        );
     }
 }
 
 .skill-level-90 {
     &::after {
-        $fill-degrees: 324deg;
-        $empty-degrees: 360deg - $fill-degrees;
+        $fill-degrees: 324deg; // 90% кола
         background: conic-gradient(
-            from $start-angle,
-            $progress-bg 0deg $empty-degrees,
-            $accent-color $empty-degrees 360deg
+            from 0deg,
+            $accent-color 0deg $fill-degrees,
+            $progress-bg $fill-degrees 360deg
         );
-        transform: rotateZ($fill-degrees * -1);
     }
 }
