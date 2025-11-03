@@ -1,0 +1,15 @@
+{
+  "about": "Lorem ipsum dolor a consectetur adipiscing elitse eiusmod tempor nincididunt labore dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo",
+  "education":
+  [
+    {
+      "major_name":"Enter",
+
+      "major_info": "Name Of Your University 2005-2009"
+    },
+    {
+      "major_name":"Enter your major",
+      "major_info": "Name Of Your University 2005-2009"
+    }
+  ]
+}

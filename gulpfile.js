@@ -1,95 +1,77 @@
-const { src, dest, series, parallel, watch } = require('gulp');
+const gulp = require('gulp'); // імпорт Gulp
+const { src, dest } = require('gulp');
+const postcss = require('gulp-postcss');
 const sass = require('gulp-sass')(require('sass'));
-const cssnano = require('gulp-cssnano');
+const cssnano = require('cssnano');
 const rename = require('gulp-rename');
 const uglify = require('gulp-uglify');
-const concat = require('gulp-concat');
-const imagemin = require('gulp-imagemin');
 const browserSync = require('browser-sync').create();
-const fileInclude = require('gulp-file-include');
-const { rm } = require('fs/promises');
+const concat = require('gulp-concat');
+const file_include = require('gulp-file-include');
+const imagemin = require('gulp-imagemin');
 
-// 🧹 Clean
-const clean = async (cb) => {
-    try {
-        await rm('dist', { recursive: true, force: true });
-        console.log('Папка dist успішно видалена.');
-    } catch (err) {
-        if (err.code !== 'ENOENT') {
-            console.error('Помилка при видаленні папки dist:', err);
+// Dynamic import for gulp-imagemin
+async function getImagemin() {
+    const imagemin = await import('gulp-imagemin');
+    return imagemin.default; // Use default export
+}
+gulp.task('styles', () => {
+    // 💥 Вихідні SCSS файли знаходяться у src/app/scss
+    return src('src/app/scss/**/*.scss')
+        .pipe(sass().on('error', sass.logError)) // Компілює SCSS у CSS
+        .pipe(postcss([cssnano()])) // Мінімізує CSS
+        .pipe(rename({ suffix: '.min' })) // Додає суфікс '.min' до файлу
+        .pipe(dest('dist/css')); // Зберігає в папку dist/css
+});
+
+// Minify JS
+gulp.task('uglify', () => {
+    return src('src/app/js/*.js')
+        .pipe(concat('all.min.js'))
+        .pipe(uglify())
+        .pipe(dest('dist/js'))
+});
+
+// Include HTML files together
+gulp.task('html', () => {
+    return src('src/app/index.html')
+        .pipe(file_include({
+            prefix: '@@',
+            basepath: '@file'}))
+        .pipe(dest('dist'));
+});
+
+// Compress images
+gulp.task('img', async () => {
+    const imagemin = await getImagemin();
+    // 🟢 ФІКС 1: Шлях до вихідних зображень змінено на img/**/* (корінь)
+    return src('src/app/img/**/*', { encoding: false })
+        .pipe(imagemin())
+        // Зберігаємо в папку dist/img
+        .pipe(dest('dist/img'));
+});
+
+// Watcher
+gulp.task('watch', () => {
+    gulp.watch('src/app/scss/**/*.scss', gulp.series('styles'));
+    gulp.watch('src/app/js/*.js', gulp.series('uglify'));
+    gulp.watch('src/app/index.html', gulp.series('html'));
+    gulp.watch('src/app/html/*.html', gulp.series('html'));
+    // 🟢 ФІКС 2: Шлях для відстеження зображень змінено на img/**/* (корінь)
+    gulp.watch('src/app/img/**/*', gulp.series('img'));
+
+});
+
+// Update browser
+gulp.task('browser-sync', () => {
+    browserSync.init({
+        server: {
+            baseDir: './dist',
         }
-    }
-    cb();
-};
+    });
+    gulp.watch('./dist').on('change', browserSync.reload);
+    gulp.watch('./data').on('change', browserSync.reload);
+});
 
-// 📄 HTML
-// ВИПРАВЛЕНО: Включаємо index.html та всі компоненти
-const html = () => src(['src/app/*.html', 'src/app/components/**/*.html'])
-    .pipe(fileInclude({ prefix: '@@', basepath: '@file' }))
-    .pipe(dest('dist'))
-    .pipe(browserSync.stream());
-
-// 🎨 Styles
-// ВИПРАВЛЕНО: Шлях до scss у src/app/
-const styles = () => src('src/app/scss/**/*.scss')
-    .pipe(sass().on('error', sass.logError))
-    .pipe(cssnano())
-    .pipe(rename({ suffix: '.min' }))
-    .pipe(dest('dist/css'))
-    .pipe(browserSync.stream());
-
-// 💻 Scripts
-// ВИПРАВЛЕНО: Шлях до js у src/app/
-const scripts = () => src('src/app/js/**/*.js')
-    .pipe(concat('main.min.js'))
-    .pipe(uglify().on('error', e => {
-        console.log(e.toString());
-        this.emit('end');
-    }))
-    .pipe(dest('dist/js'))
-    .pipe(browserSync.stream());
-
-// 🖼 Images - ТУТ УЖЕ ПРАВИЛЬНО
-const images = () => src('src/app/images/**/*')
-    .pipe(imagemin())
-    .pipe(dest('dist/images'));
-
-// 🌟 Favicon
-const favicon = () => src('src/favicon.ico', { allowEmpty: true })
-    .pipe(dest('dist'));
-
-// === ТАСКИ ДЛЯ BOOTSTRAP ===
-
-const bootstrapCSS = () => src('node_modules/bootstrap/dist/css/bootstrap.min.css')
-    .pipe(dest('dist/css'))
-    .pipe(browserSync.stream());
-
-const bootstrapJS = () => src('node_modules/bootstrap/dist/js/bootstrap.bundle.min.js')
-    .pipe(dest('dist/js'))
-    .pipe(browserSync.stream());
-
-// 🔄 Server
-const sync = done => {
-    browserSync.init({ server: { baseDir: 'dist' } });
-    done();
-};
-
-// 👀 Watcher
-const watcher = () => {
-    // ВИПРАВЛЕНО: Спостерігаємо за всіма HTML-файлами в src/app/
-    watch('src/app/**/*.html', html);
-    // ВИПРАВЛЕНО: Спостерігаємо за scss у src/app/
-    watch('src/app/scss/**/*.scss', styles);
-    // ВИПРАВЛЕНО: Спостерігаємо за js у src/app/
-    watch('src/app/js/**/*.js', scripts);
-    // ТУТ УЖЕ ПРАВИЛЬНО
-    watch('src/app/images/**/*', images);
-};
-
-// 🏁 Default
-exports.default = series(
-    clean,
-    parallel(html, styles, scripts, images, favicon, bootstrapCSS, bootstrapJS),
-    sync,
-    watcher
-);
+// Default task
+gulp.task('default', gulp.series('html', 'styles', 'uglify', 'img', gulp.parallel('browser-sync', 'watch')));
