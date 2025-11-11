@@ -3,8 +3,16 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Resume Jhon Abirar</title>
-    <link href="./css/style.min.css" rel="stylesheet" />
+    <title>Resume |van</title>
+
+    <!-- ✅ 1. ЛОКАЛЬНИЙ BOOTSTRAP (скопійовано Gulp-таском 'bootstrap-css') -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- ✅ 2. ВАШІ СТИЛІ (скопійовано Gulp-таском 'styles') -->
+    <link href="css/style.min.css" rel="stylesheet" />
+    <!-- 🆕 ДОДАНО: СТИЛІ index.min.css -->
+    <link href="css/index.min.css" rel="stylesheet" />
+
 </head>
 
 <body>
@@ -59,19 +67,19 @@
                 <h3 class="left_title hobbies_title">hobbies</h3>
                 <div class="hobbies_list">
                     <div class="hobbies_item">
-                        <img class="item_image" src="./img/travel.png" alt="travel icon" />
+                        <img class="item_image" src="./img/travel.png" alt="" />
                         <p class="item_text">Travel</p>
                     </div>
                     <div class="hobbies_item">
-                        <img class="item_image" src="./img/music.png" alt="music icon" />
+                        <img class="item_image" src="./img/music.png" alt="" />
                         <p class="item_text">Music</p>
                     </div>
                     <div class="hobbies_item">
-                        <img class="item_image" src="./img/writing.png" alt="writing icon" />
+                        <img class="item_image" src="./img/writing.png" alt="" />
                         <p class="item_text">Writing</p>
                     </div>
                     <div class="hobbies_item">
-                        <img class="item_image" src="./img/chess.png" alt="chess icon" />
+                        <img class="item_image" src="./img/chess.png" alt="" />
                         <p class="item_text">Chess</p>
                     </div>
                 </div>
@@ -83,8 +91,10 @@
                 <p class="header__text">ui designer</p>
             </div>
             <div class="aboutme">
+
                 <h3 class="left_title roll">about me</h3>
-                <div id="about-me-container">
+                <div class=" roll-block"  id="about-me-container">
+
                     <p class="aboutme_text">
                         Lorem ipsum dolor a consectetur adipiscing elitse eiusmod tempor
                         incididunt labore dolore magna aliqua. Quis ipsum suspendisse
@@ -95,12 +105,13 @@
             </div>
             <div class="education">
                 <h3 class="left_title roll">education</h3>
-                <div class="education_list" id="education-container">
+                <div class="education_list roll-block" id="education-container">
+
+
                     <div class="education_card">
                         <h4 class="education_card__title">Enter your major</h4>
                         <p class="education_card__text">
                             Name Of Your University 2005-2009
-                        </p>
                     </div>
                     <div class="education_card">
                         <h4 class="education_card__title">Enter your major</h4>
@@ -108,11 +119,14 @@
                             Name Of Your University 2009-2011
                         </p>
                     </div>
+
+
                 </div>
             </div>
             <div class="experience">
                 <h3 class="left_title roll">experience</h3>
-                <div class="experience_list">
+                <div class="experience_list roll-block">
+
                     <div class="experience_card">
                         <h4 class="experience_card__title">Enter Job Position Here</h4>
                         <h5 class="experience_card__subtitle">
@@ -133,40 +147,161 @@
                             adipisicing elit, sed do eiusmod tempor incididunt ut labore
                         </p>
                     </div>
+
                 </div>
             </div>
             <div class="expertise">
                 <h2 class="left_title">Expertise</h2>
                 <div class="expertise__items">
                     <div class="expertise__item">
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="150px" height="150px" viewBox="0 0 279 278">
-                            <path fill-rule="evenodd" stroke="rgb(225, 225, 225)" stroke-width="20px" stroke-linecap="round" stroke-linejoin="miter" fill="none" d="M131.513,29.986 C187.578,29.986 233.027,75.435 233.027,131.499 C233.027,187.564 187.578,233.013 131.513,233.013 C75.449,233.013 29.1000,187.564 29.1000,131.499 C29.1000,75.435 75.449,29.986 131.513,29.986 Z"/>
-                            <path fill-rule="evenodd" stroke="rgb(255, 255, 255)" stroke-width="30px" stroke-linecap="round" stroke-linejoin="miter" fill="none" d="M194.629,211.011 C177.301,224.785 155.368,233.013 131.513,233.013 C75.449,233.013 29.1000,187.564 29.1000,131.499 C29.1000,75.435 75.449,29.986 131.513,29.986 C187.578,29.986 233.027,75.435 233.027,131.499 "/>
-                            <path fill-rule="evenodd" stroke="rgb(219, 83, 38)" stroke-width="20px" stroke-linecap="round" stroke-linejoin="miter" fill="none" d="M194.629,211.011 C177.301,224.785 155.368,233.013 131.513,233.013 C75.449,233.013 29.1000,187.564 29.1000,131.499 C29.1000,75.435 75.449,29.986 131.513,29.986 C187.578,29.986 233.027,75.435 233.027,131.499 "/>
+                        <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                width="150px"
+                                height="150px"
+                                viewBox="0 0 279 278"
+                        >
+                            <path
+                                    fill-rule="evenodd"
+                                    stroke="rgb(225, 225, 225)"
+                                    stroke-width="20px"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="miter"
+                                    fill="none"
+                                    d="M131.513,29.986 C187.578,29.986 233.027,75.435 233.027,131.499 C233.027,187.564 187.578,233.013 131.513,233.013 C75.449,233.013 29.1000,187.564 29.1000,131.499 C29.1000,75.435 75.449,29.986 131.513,29.986 Z"
+                            />
+                            <path
+                                    fill-rule="evenodd"
+                                    stroke="rgb(255, 255, 255)"
+                                    stroke-width="30px"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="miter"
+                                    fill="none"
+                                    d="M194.629,211.011 C177.301,224.785 155.368,233.013 131.513,233.013 C75.449,233.013 29.1000,187.564 29.1000,131.499 C29.1000,75.435 75.449,29.986 131.513,29.986 C187.578,29.986 233.027,75.435 233.027,131.499 "
+                            />
+                            <path
+                                    fill-rule="evenodd"
+                                    stroke="rgb(219, 83, 38)"
+                                    stroke-width="20px"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="miter"
+                                    fill="none"
+                                    d="M194.629,211.011 C177.301,224.785 155.368,233.013 131.513,233.013 C75.449,233.013 29.1000,187.564 29.1000,131.499 C29.1000,75.435 75.449,29.986 131.513,29.986 C187.578,29.986 233.027,75.435 233.027,131.499 "
+                            />
                         </svg>
                         <p class="expertise__text">Adobe Photoshop</p>
                     </div>
                     <div class="expertise__item">
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="150px" height="150px" viewBox="0 0 279 278">
-                            <path fill-rule="evenodd" stroke="rgb(225, 225, 225)" stroke-width="20px" stroke-linecap="round" stroke-linejoin="miter" fill="none" d="M132.487,29.986 C188.551,29.986 234.000,75.435 234.000,131.499 C234.000,187.564 188.551,233.013 132.487,233.013 C76.422,233.013 30.973,187.564 30.973,131.499 C30.973,75.435 76.422,29.986 132.487,29.986 C188.551,29.986 234.000,75.435 234.000,131.499 "/>
-                            <path fill-rule="evenodd" stroke="rgb(255, 255, 255)" stroke-width="30px" stroke-linecap="round" stroke-linejoin="miter" fill="none" d="M172.790,224.697 C160.435,230.047 146.807,233.013 132.487,233.013 C76.422,233.013 30.973,187.564 30.973,131.499 C30.973,75.435 76.422,29.986 132.487,29.986 C188.551,29.986 234.000,75.435 234.000,131.499 "/>
-                            <path fill-rule="evenodd" stroke="rgb(219, 83, 38)" stroke-width="20px" stroke-linecap="round" stroke-linejoin="miter" fill="none" d="M172.790,224.697 C160.435,230.047 146.807,233.013 132.487,233.013 C76.422,233.013 30.973,187.564 30.973,131.499 C30.973,75.435 76.422,29.986 132.487,29.986 C188.551,29.986 234.000,75.435 234.000,131.499 "/>
+                        <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                width="150px"
+                                height="150px"
+                                viewBox="0 0 279 278"
+                        >
+                            <path
+                                    fill-rule="evenodd"
+                                    stroke="rgb(225, 225, 225)"
+                                    stroke-width="20px"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="miter"
+                                    fill="none"
+                                    d="M132.487,29.986 C188.551,29.986 234.000,75.435 234.000,131.499 C234.000,187.564 188.551,233.013 132.487,233.013 C76.422,233.013 30.973,187.564 30.973,131.499 C30.973,75.435 76.422,29.986 132.487,29.986 Z"
+                            />
+                            <path
+                                    fill-rule="evenodd"
+                                    stroke="rgb(255, 255, 255)"
+                                    stroke-width="30px"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="miter"
+                                    fill="none"
+                                    d="M172.790,224.697 C160.435,230.047 146.807,233.013 132.487,233.013 C76.422,233.013 30.973,187.564 30.973,131.499 C30.973,75.435 76.422,29.986 132.487,29.986 C188.551,29.986 234.000,75.435 234.000,131.499 "
+                            />
+                            <path
+                                    fill-rule="evenodd"
+                                    stroke="rgb(219, 83, 38)"
+                                    stroke-width="20px"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="miter"
+                                    fill="none"
+                                    d="M172.790,224.697 C160.435,230.047 146.807,233.013 132.487,233.013 C76.422,233.013 30.973,187.564 30.973,131.499 C30.973,75.435 76.422,29.986 132.487,29.986 C188.551,29.986 234.000,75.435 234.000,131.499 "
+                            />
                         </svg>
                         <p class="expertise__text">Adobe Illustrator</p>
                     </div>
                     <div class="expertise__item">
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="150px" height="150px" viewBox="0 0 279 278">
-                            <path fill-rule="evenodd" stroke="rgb(225, 225, 225)" stroke-width="20px" stroke-linecap="round" stroke-linejoin="miter" fill="none" d="M132.460,29.986 C188.524,29.986 233.974,75.435 233.974,131.499 C233.974,187.564 188.524,233.013 132.460,233.013 C76.396,233.013 30.946,187.564 30.946,131.499 C30.946,75.435 76.396,29.986 132.460,29.986 Z"/>
-                            <path fill-rule="evenodd" stroke="rgb(255, 255, 255)" stroke-width="30px" stroke-linecap="round" stroke-linejoin="miter" fill="none" d="M132.460,233.013 C76.396,233.013 30.946,187.564 30.946,131.499 C30.946,75.435 76.396,29.986 132.460,29.986 C188.524,29.986 233.974,75.435 233.974,131.499 "/>
-                            <path fill-rule="evenodd" stroke="rgb(219, 83, 38)" stroke-width="20px" stroke-linecap="round" stroke-linejoin="miter" fill="none" d="M132.460,233.013 C76.396,233.013 30.946,187.564 30.946,131.499 C30.946,75.435 76.396,29.986 132.460,29.986 C188.524,29.986 233.974,75.435 233.974,131.499 "/>
+                        <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                width="150px"
+                                height="150px"
+                                viewBox="0 0 279 278"
+                        >
+                            <path
+                                    fill-rule="evenodd"
+                                    stroke="rgb(225, 225, 225)"
+                                    stroke-width="20px"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="miter"
+                                    fill="none"
+                                    d="M132.460,29.986 C188.524,29.986 233.974,75.435 233.974,131.499 C233.974,187.564 188.524,233.013 132.460,233.013 C76.396,233.013 30.946,187.564 30.946,131.499 C30.946,75.435 76.396,29.986 132.460,29.986 Z"
+                            />
+                            <path
+                                    fill-rule="evenodd"
+                                    stroke="rgb(255, 255, 255)"
+                                    stroke-width="30px"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="miter"
+                                    fill="none"
+                                    d="M132.460,233.013 C76.396,233.013 30.946,187.564 30.946,131.499 C30.946,75.435 76.396,29.986 132.460,29.986 C188.524,29.986 233.974,75.435 233.974,131.499 "
+                            />
+                            <path
+                                    fill-rule="evenodd"
+                                    stroke="rgb(219, 83, 38)"
+                                    stroke-width="20px"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="miter"
+                                    fill="none"
+                                    d="M132.460,233.013 C76.396,233.013 30.946,187.564 30.946,131.499 C30.946,75.435 76.396,29.986 132.460,29.986 C188.524,29.986 233.974,75.435 233.974,131.499 "
+                            />
                         </svg>
                         <p class="expertise__text">Adobe Indesign</p>
                     </div>
                     <div class="expertise__item">
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="150px" height="150px" viewBox="0 0 279 278">
-                            <path fill-rule="evenodd" stroke="rgb(225, 225, 225)" stroke-width="20px" stroke-linecap="round" stroke-linejoin="miter" fill="none" d="M131.579,29.986 C187.644,29.986 233.093,75.435 233.093,131.499 C233.093,187.564 187.644,233.013 131.579,233.013 C75.515,233.013 30.066,187.564 30.066,131.499 C30.066,75.435 75.515,29.986 131.579,29.986 Z"/>
-                            <path fill-rule="evenodd" stroke="rgb(255, 255, 255)" stroke-width="30px" stroke-linecap="round" stroke-linejoin="miter" fill="none" d="M168.970,225.905 C157.399,230.492 144.783,233.013 131.579,233.013 C75.515,233.013 30.066,187.564 30.066,131.499 C30.066,75.435 75.515,29.986 131.579,29.986 C187.644,29.986 233.093,75.435 233.093,131.499 "/>
-                            <path fill-rule="evenodd" stroke="rgb(219, 83, 38)" stroke-width="20px" stroke-linecap="round" stroke-linejoin="miter" fill="none" d="M168.970,225.905 C157.399,230.492 144.783,233.013 131.579,233.013 C75.515,233.013 30.066,187.564 30.066,131.499 C30.066,75.435 75.515,29.986 131.579,29.986 C187.644,29.986 233.093,75.435 233.093,131.499 "/>
+                        <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                width="150px"
+                                height="150px"
+                                viewBox="0 0 279 278"
+                        >
+                            <path
+                                    fill-rule="evenodd"
+                                    stroke="rgb(225, 225, 225)"
+                                    stroke-width="20px"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="miter"
+                                    fill="none"
+                                    d="M131.579,29.986 C187.644,29.986 233.093,75.435 233.093,131.499 C233.093,187.564 187.644,233.013 131.579,233.013 C75.515,233.013 30.066,187.564 30.066,131.499 C30.066,75.435 75.515,29.986 131.579,29.986 Z"
+                            />
+                            <path
+                                    fill-rule="evenodd"
+                                    stroke="rgb(255, 255, 255)"
+                                    stroke-width="30px"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="miter"
+                                    fill="none"
+                                    d="M168.970,225.905 C157.399,230.492 144.783,233.013 131.579,233.013 C75.515,233.013 30.066,187.564 30.066,131.499 C30.066,75.435 75.515,29.986 131.579,29.986 C187.644,29.986 233.093,75.435 233.093,131.499 "
+                            />
+                            <path
+                                    fill-rule="evenodd"
+                                    stroke="rgb(219, 83, 38)"
+                                    stroke-width="20px"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="miter"
+                                    fill="none"
+                                    d="M168.970,225.905 C157.399,230.492 144.783,233.013 131.579,233.013 C75.515,233.013 30.066,187.564 30.066,131.499 C30.066,75.435 75.515,29.986 131.579,29.986 C187.644,29.986 233.093,75.435 233.093,131.499 "
+                            />
                         </svg>
                         <p class="expertise__text">PowerPoint</p>
                     </div>
@@ -176,6 +311,11 @@
     </div>
 </div>
 
-<script src="./js/all.min.js"></script>
+
+<!-- ✅ 3. ЛОКАЛЬНИЙ BOOTSTRAP JS (скопійовано Gulp-таском 'bootstrap-js') -->
+<script src="js/bootstrap.bundle.min.js"></script>
+
+<!-- ✅ 4. ВАШІ СКРИПТИ (скопійовано Gulp-таском 'uglify') -->
+<script src="js/all.min.js"></script>
 </body>
 </html>

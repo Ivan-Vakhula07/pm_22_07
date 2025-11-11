@@ -1,0 +1,72 @@
+// src/app/scss/_right.scss
+@use 'config';
+@use 'mixins';
+
+.right {
+    padding: 30px 40px;
+
+    .header {
+        text-transform: uppercase;
+        margin-bottom: 40px;
+        &_title {
+            font-size: 3rem;
+            color: config.$text-color-dark;
+            span {
+                color: config.$primary-color;
+            }
+        }
+        &__text {
+            color: config.$primary-color;
+            font-size: 1.2rem;
+        }
+    }
+
+    .aboutme, .education, .experience, .expertise {
+        @include mixins.section-padding(20px, 20px);
+    }
+
+    // =========================================================
+    // ПІДТРИМКА JAVASCRIPT ДЛЯ ЗГОРТАННЯ (ЛР №4, Завдання 2)
+    // =========================================================
+
+    // Стилізація заголовка для клікабельності
+    .roll {
+        cursor: pointer;
+        user-select: none;
+        display: flex;
+        justify-content: space-between; // Розміщує стрілку праворуч
+        align-items: center;
+
+        // Зберігаємо базовий стиль успадкування від _base.scss, якщо він є
+        @extend .left_title;
+    }
+
+    // Стилі для стрілки
+    .toggle-arrow {
+        font-size: 1.2rem;
+        transition: transform 0.3s ease; // Плавна анімація обертання
+        margin-left: 10px;
+
+        // Стан: стрілка згорнута (застосовується JS класом .rotated)
+        &.rotated {
+            transform: rotate(-90deg);
+        }
+    }
+
+    // Блоки контенту
+    .roll-block {
+        // Уникаємо проблем з макетом, коли контент прихований
+        margin-bottom: 20px;
+
+        // Стан: контент прихований (застосовується JS класом .collapsed)
+        // Для найпростішої реалізації:
+        &.collapsed {
+            display: none;
+        }
+    }
+
+    // Успадкування стилю картки з _base.scss
+    .education_card, .experience_card {
+        @extend %card-base;
+    }
+}

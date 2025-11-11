@@ -13,12 +13,57 @@ $primary-color: #db5326;
   padding: 0 20px;
 }
 
-// ВИПРАВЛЕННЯ: Видалено max-height: 0 та overflow: hidden.
-// Тепер вміст visible за замовчуванням. Клас використовується лише для анімації.
+// =========================================================
+// 🚀 ВИПРАВЛЕННЯ ДЛЯ ЗГОРТАННЯ/РОЗГОРТАННЯ
+// =========================================================
+
+.roll {
+    cursor: pointer; // Вказує, що елемент клікабельний
+    display: flex;
+    align-items: center;
+    // Додаємо відступ для стрілки, якщо вона є
+    h3 { // Застосовуємо стилі до h3 всередині .roll
+        margin-right: 10px;
+    }
+}
+
+.toggle-arrow {
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+    display: inline-block;
+    font-size: 14px;
+    line-height: 1;
+}
+
+/* Стрілка при згорнутому стані (ваша логіка JS) */
+.rotated {
+    transform: rotate(-90deg);
+}
+
+
 .roll-block {
-  /* max-height: 0; */
-  /* overflow: hidden; */
-  transition: max-height 0.3s ease;
+    /* Основний стан: розгорнуто. Максимальна висота, що вмістить весь контент. */
+    overflow: hidden;
+    max-height: 1500px; /* Велике значення для коректної анімації розгортання */
+    transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
+}
+
+.roll-block.collapsed {
+    /* Стан: згорнуто. Обнуляємо висоту. */
+    max-height: 0;
+    // Обнуляємо вертикальні відступи, щоб вони не займали місця
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+// =========================================================
+// 🔥 ГОЛОВНІ ЗМІНИ ДЛЯ ФОНУ РЕЗЮМЕ ТА СТОРІНКИ
+// =========================================================
+
+body {
+  background-color: #FFF8DC; /* ✅ Світло-жовтий фон для всієї сторінки */
 }
 
 .content {
@@ -26,15 +71,21 @@ $primary-color: #db5326;
   justify-content: center;
   margin: 0 auto;
   gap: 100px;
+  background-color: white; /* ✅ Білий фон для всього резюме */
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
 }
 
 .left {
   display: flex;
   flex-direction: column;
   gap: 50px;
-  background-color: #ebebeb;
+  background-color: #ebebeb; /* ✅ ДОДАНО: Світло-сірий фон для лівої колонки */
   padding: 50px 0;
 }
+
+// =========================================================
+// ✏️ СТИЛІ ЛІВОЇ КОЛОНКИ
+// =========================================================
 
 .left_title {
   @include title;
@@ -146,6 +197,10 @@ $primary-color: #db5326;
   font-size: 17px;
   font-weight: 500;
 }
+
+// =========================================================
+// ✏️ СТИЛІ ПРАВОЇ КОЛОНКИ
+// =========================================================
 
 .right {
   display: flex;
@@ -316,12 +371,13 @@ $primary-color: #db5326;
 
 .expertise__text {
   position: absolute;
-  top: 40%;
-  left: 48%;
+  /* ✅ ВИПРАВЛЕННЯ ВИРІВНЮВАННЯ */
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
   font-family: "Poppins", serif;
   font-size: 14px;
-  margin-top: 10px;
+  margin-top: 0; /* Обнуляємо, щоб transform працював ідеально */
   text-align: center;
 }
 
@@ -356,10 +412,6 @@ $primary-color: #db5326;
   box-sizing: border-box;
 }
 
-body {
-  background-color: #F5F5F5;
-}
-
 a {
   text-decoration: none;
   color: inherit;
@@ -384,11 +436,6 @@ button {
 html {
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
-}
-
-body {
-  margin: 0;
-  padding: 0 auto;
 }
 
 main {

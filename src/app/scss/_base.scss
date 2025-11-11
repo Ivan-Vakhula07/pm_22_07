@@ -1,0 +1,19 @@
+// src/app/scss/_base.scss
+@use 'config';
+
+// ... (базові стилі body)
+
+%card-base {
+    border-left: 3px solid config.$primary-color;
+    padding-left: 15px;
+    margin-bottom: 25px;
+}
+
+.left_title {
+    @extend %card-base; // Успадкування тут для загальних заголовків
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: config.$text-color-dark;
+    border: none;
+    padding-left: 0; // Наприклад, скасовуємо padding від %card-base, якщо потрібно
+}

@@ -1,0 +1,13 @@
+ // Міксін для швидкого додавання відступів
+ @mixin section-padding($top: 30px, $bottom: 30px) {
+     padding-top: $top;
+     padding-bottom: $bottom;
+ }
+
+ // Міксін для стилізації заголовків секцій
+ @mixin section-title-style {
+     color: config.$primary-color;
+     font-size: 1.5rem;
+     text-transform: uppercase;
+     margin-bottom: config.$header-margin-bottom;
+ }

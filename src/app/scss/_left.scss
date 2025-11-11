@@ -1,0 +1,43 @@
+ @use 'config';
+ @use 'mixins';
+
+ .left {
+     // Ліва колонка (col-md-4) має світлий фон
+     background-color: config.$primary-color-red;
+     padding: 30px;
+
+     // Вкладеність для стилізації елементів всередині
+     .addres {
+         @include mixins.section-padding(0, 20px);
+         &__title {
+             @include mixins.section-title-style;
+         }
+     }
+
+     .photo {
+         margin-bottom: 30px;
+         .photo_image {
+             display: block;
+             width: 100%;
+             height: auto;
+         }
+     }
+
+     .contact, .reference, .hobbies {
+         @include mixins.section-padding(20px, 20px);
+     }
+
+     // Стилізація контактної інформації
+     .contact_card {
+         margin-bottom: 5px;
+         &_title {
+             font-weight: bold;
+             color: config.$primary-color;
+             margin-bottom: 0;
+         }
+         &_text {
+             color: config.$text-color-light;
+             text-decoration: none;
+         }
+     }
+ }
