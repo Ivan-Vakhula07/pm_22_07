@@ -1,98 +1,115 @@
-const btnRoll = document.getElementsByClassName("roll");
-const blockRoll = document.getElementsByClassName("roll-block");
+// --- ФУНКЦІОНАЛ (ЛР №4: Згортання, ЛР №5: AJAX) ---
 
-// =========================================================
-// ✅ НОВА ЛОГІКА: Ініціалізація стрілок та прив'язка обробників
-// =========================================================
+document.addEventListener('DOMContentLoaded', () => {
 
-Array.from(btnRoll).forEach((btn, index) => {
-    // 1. Додавання стрілки до заголовка
-    btn.innerHTML += ' <span class="toggle-arrow">▼</span>';
-    const arrow = btn.querySelector('.toggle-arrow');
+    // 1. ЛОГІКА ЗГОРТАННЯ/РОЗГОРТАННЯ (ЛР №4)
 
-    // 2. Встановлення початкового стану (Згорнуто)
-    // У вашому підході початковий стан задається стилями CSS (max-height: 0)
-    if (arrow) {
-        // Ми припускаємо, що у CSS клас .toggle-arrow.rotated обертає стрілку
-        arrow.classList.add('rotated');
-    }
+    /**
+     * Перемикає видимість (згортає/розгортає) блок контенту.
+     * @param {HTMLElement} element - елемент, що містить клас 'roll-block'.
+     */
+    function toggleRollBlock(element) {
+        // Перевіряємо, чи блок є відкритим
+        const isOpen = element.classList.contains('is-open');
 
-    // 3. Додавання слухача події
-    btn.addEventListener("click", () => {
-        showOrHide(blockRoll[index], arrow);
-    });
-});
-
-// =========================================================
-// ✅ ОНОВЛЕНА ФУНКЦІЯ: Розгортання/згортання та обертання стрілки
-// =========================================================
-
-/**
- * Функція для розгортання/згортання блоку та зміни піктограми.
- * @param {HTMLElement} block - Блок контенту.
- * @param {HTMLElement} arrow - Елемент стрілки.
- */
-function showOrHide(block, arrow) {
-    if (block.style.maxHeight && block.style.maxHeight !== "0px") {
-        block.style.maxHeight = "0"; // Згорнути
-        if (arrow) arrow.classList.add('rotated'); // Обернути стрілку вниз/назад
-    } else {
-        block.style.maxHeight = block.scrollHeight + "px"; // Розгорнути до висоти контенту
-        if (arrow) arrow.classList.remove('rotated'); // Обернути стрілку вгору/вперед
-    }
-}
-
-// =========================================================
-// ЛОГІКА FETCH API ТА RENDER (залишена без змін, крім назви аргументу)
-// =========================================================
-
-// Fetch API reqпний
-async function getData() {
-    try{
-        // Припускаємо, що server (localhost:8080) досту
-        const response = await fetch("http://localhost:8080/data/data.json",{cache:"no-store"});
-        if (!response.ok) {
-            throw new Error('Помилка при завантаженні даних');
+        if (isOpen) {
+            // Закрити
+            element.classList.remove('is-open');
+            element.classList.add('is-closed');
+        } else {
+            // Відкрити
+            element.classList.remove('is-closed');
+            element.classList.add('is-open');
         }
-        const json = await response.json();
-        // Рендеринг даних
-        renderData(json);
-    }catch(error){
-        console.error('Помилка під час отримання даних:', error);
     }
-}
 
-// Виклик завантаження даних
-getData();
+    // Додаємо обробник подій на всі елементи з класом 'toggle-icon'
+    document.querySelectorAll('.toggle-icon').forEach(icon => {
+        icon.closest('.d-flex').addEventListener('click', (e) => {
+             // Знаходимо target (наприклад, 'about-me-content')
+            const targetId = icon.getAttribute('data-target');
+            const targetElement = document.getElementById(targetId);
 
-// Show data on page
-function renderData(data) {
+            if (targetElement) {
+                toggleRollBlock(targetElement);
+            }
+        });
+    });
 
-    const about_me_container = document.getElementById("about-me-container");
 
-    // Припускаємо, що data.about містить текст про мене
-    const p = document.createElement("p");
-    p.classList.add("aboutme_text")
-    p.textContent = data.about;
-    about_me_container.appendChild(p);
+    // 2. ЛОГІКА ЗАВАНТАЖЕННЯ ДАНИХ (ЛР №5)
 
-    const education_container = document.getElementById("education-container");
-    data.education.forEach((item) => {
-        const div = document.createElement("div");
-        div.classList.add("education_card");
+    const dataPath = 'data/data.json';
 
-        const h4 = document.createElement("h4");
-        h4.classList.add("education_card__title");
-        h4.textContent = item.major_name;
-        div.appendChild(h4);
+    /**
+     * Завантажує дані з JSON-файлу.
+     */
+    async function loadData() {
+        try {
+            const response = await fetch(dataPath);
+            if (!response.ok) {
+                throw new Error(`Помилка HTTP: ${response.status}`);
+            }
+            const data = await response.json();
+            renderCV(data);
+        } catch (error) {
+            console.error("Не вдалося завантажити дані:", error);
+            // Виведення повідомлення про помилку на сторінку
+            document.getElementById('personName').innerHTML = '<span class="text-danger">Помилка завантаження даних!</span>';
+        }
+    }
 
-        const p = document.createElement("p");
-        p.classList.add("education_card__text");
-        p.textContent = item.major_info;
-        div.appendChild(p);
+    /**
+     * Рендерить дані CV на сторінці.
+     * @param {Object} data - об'єкт даних з data.json.
+     */
+    function renderCV(data) {
+        // Оновлення імені (ЛР №5, п. 3.2)
+        const nameElement = document.getElementById('personName');
+        if (nameElement && data.name && data.surname) {
+            nameElement.innerHTML = `${data.name.toUpperCase()} <span class="text-secondary">${data.surname.toUpperCase()}</span>`;
+        }
 
-        education_container.appendChild(div);
-    })
-    // NOTE: Тут не вистачає логіки для секції Experience,
-    // якщо ви її також завантажуєте з JSON, її потрібно додати сюди!
-}
+        // Оновлення "Про мене" (ЛР №5, п. 3.2)
+        const aboutMeElement = document.querySelector('#about-me-content .aboutme_text');
+        if (aboutMeElement && data.aboutMe) {
+            aboutMeElement.textContent = data.aboutMe;
+        }
+
+        // Оновлення Освіти (ЛР №5, п. 3.3)
+        const educationContainer = document.getElementById('education-content');
+        if (educationContainer && data.education) {
+            educationContainer.innerHTML = data.education.map(item => `
+                <div class="card education_card mb-3 shadow-sm border-start border-5 border-primary">
+                    <div class="card-body p-3">
+                        <h4 class="card-title education_card__title fw-bold fs-5">${item.degree}</h4>
+                        <p class="card-text education_card__text text-muted mb-0">
+                            ${item.institution} <span class="badge bg-primary">${item.years}</span>
+                        </p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Оновлення Досвіду (ЛР №5, п. 3.3)
+        const experienceContainer = document.getElementById('experience-content');
+        if (experienceContainer && data.experience) {
+            experienceContainer.innerHTML = data.experience.map(item => `
+                <div class="card experience_card mb-3 shadow-sm border-start border-5 border-success">
+                    <div class="card-body p-3">
+                        <h4 class="card-title experience_card__title fw-bold fs-5">${item.position}</h4>
+                        <h5 class="card-subtitle experience_card__subtitle text-success mb-2">
+                            <span>${item.duration}</span> ${item.company} / ${item.location}
+                        </h5>
+                        <p class="card-text experience_card__text">
+                            ${item.description}
+                        </p>
+                    </div>
+                </div>
+            `).join('');
+        }
+    }
+
+    // Запускаємо завантаження даних при старті
+    loadData();
+});

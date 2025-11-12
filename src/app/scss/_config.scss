@@ -1,19 +1,18 @@
-// ----------------------------------------
-// ЗМІННІ ДЛЯ КОЛЬОРІВ
-// ----------------------------------------
-$primary-color: #DB5326;
-$primary-color-light: #F4F4F4;
-$text-color-dark: #333333;
-$text-color-light: #666666;
-$font-family-base: "Arial", sans-serif;
+ /* Змінні (з _config.scss) */
+        :root {
+            --primary-color: #2b7a78;
+            --secondary-color: #3aafa9;
+            --dark-color: #17252a;
+            --light-color: #def2f1;
+            --transition-speed: 0.3s;
+        }
 
+        /* Глобальні стилі */
+        .container {
+            max-width: 1000px;
+        }
 
-// ----------------------------------------
-// ЗМІННІ ДЛЯ РОЗМІРІВ ТА ОПЕРАЦІЙ
-// ----------------------------------------
-
-// Базовий відступ
-$base-padding: 15px;
-
-// Відступ для заголовків (демонстрація математичної операції)
-$header-margin-bottom: $base-padding * 1.5;
+        .content {
+            background: white;
+            min-height: 85vh; /* Для десктопу */
+        }

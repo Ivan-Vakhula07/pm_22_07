@@ -1,309 +1,325 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Resume |van</title>
+    <title>Резюме | CV (Фінальний результат)</title>
 
-    <!-- ✅ 1. ЛОКАЛЬНИЙ BOOTSTRAP (скопійовано Gulp-таском 'bootstrap-css') -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    <!-- ✅ 2. ВАШІ СТИЛІ (скопійовано Gulp-таском 'styles') -->
-    <link href="css/style.min.css" rel="stylesheet" />
-    <!-- 🆕 ДОДАНО: СТИЛІ index.min.css -->
-    <link href="css/index.min.css" rel="stylesheet" />
+    <style>
+        /* Змінні (з _config.scss) */
+        :root {
+            --primary-color: #2b7a78;
+            --secondary-color: #3aafa9;
+            --dark-color: #17252a;
+            --light-color: #def2f1;
+            --transition-speed: 0.3s;
+        }
 
+        /* Глобальні стилі */
+        .container {
+            max-width: 1000px;
+        }
+
+        .content {
+            background: white;
+            min-height: 85vh; /* Для десктопу */
+        }
+
+        /* 1. СТИЛІ ЛІВОГО САЙДБАРУ (_left.scss) */
+        .left {
+            background-color: var(--dark-color) !important;
+        }
+
+        .left .left_title {
+            color: var(--secondary-color);
+            border-color: var(--secondary-color) !important;
+        }
+
+        .left .photo_image {
+            border-color: var(--light-color) !important;
+            width: 100%;
+            max-width: 200px;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .left .contact_list .list-group-item {
+            border-color: rgba(255, 255, 255, 0.1) !important;
+        }
+
+        .left .contact_list a.contact_card_text {
+            text-decoration: none;
+            color: var(--secondary-color) !important;
+        }
+        .left .contact_list a.contact_card_text:hover {
+            text-decoration: underline;
+            color: var(--primary-color) !important;
+        }
+
+        .left .hobbies_item .item_image {
+            filter: invert(100%); /* Інвертує колір іконок на темному фоні */
+        }
+        .left .hobbies_item .item_text {
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+
+        /* Додаткові стилі для секції мов, щоб імітувати вигляд на зображенні */
+        .language_item {
+            margin-bottom: 1rem;
+        }
+
+        .language_item .progress-bar {
+            height: 5px; /* Тонша смужка прогресу */
+            background-color: var(--secondary-color); /* Колір смужки */
+        }
+
+        .language_item .progress {
+            background-color: rgba(255, 255, 255, 0.1); /* Фон для смужки */
+            border-radius: 0; /* Прибрати заокруглення */
+        }
+
+        /* 2. СТИЛІ ПРАВОЇ КОЛОНКИ (_right.scss) */
+        .right .header .header_title {
+            color: var(--primary-color) !important;
+        }
+        .right .header .header__text {
+            color: var(--dark-color) !important;
+        }
+
+        .right .left_title {
+            color: var(--dark-color);
+            font-weight: 700;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        /* Ефекти наведення на картки (ЛР №3) */
+        .right .education_card, .right .experience_card {
+            transition: transform var(--transition-speed);
+            cursor: pointer;
+        }
+        .right .education_card:hover, .right .experience_card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0.5rem 1rem rgba(43, 122, 120, 0.15) !important; /* Використання $primary-color */
+        }
+
+        .right .expertise__item .p-3 {
+            border-color: var(--secondary-color) !important;
+            background-color: var(--light-color) !important;
+        }
+
+        /* 3. СТИЛІ ДЛЯ ЗГОРТАННЯ (ЛР №4) */
+        .roll-block {
+            max-height: 500px; /* Початкова висота */
+            overflow: hidden;
+            transition: max-height var(--transition-speed) ease-in-out, opacity var(--transition-speed) ease-in-out;
+            opacity: 1;
+        }
+        .roll-block.is-closed {
+            max-height: 0;
+            opacity: 0;
+            margin-bottom: 0 !important;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+        }
+
+        .toggle-icon {
+            cursor: pointer;
+            transition: transform var(--transition-speed);
+        }
+        .d-flex.cursor-pointer {
+            cursor: pointer; /* Для всієї області заголовка */
+        }
+        /* Обертання іконки для закритого стану */
+        .roll-block.is-closed + .toggle-icon,
+        .roll-block.is-closed ~ .toggle-icon {
+             transform: rotate(180deg);
+        }
+    </style>
 </head>
 
 <body>
-<div class="container">
-    <div class="content">
-        <section class="left">
-            <div class="addres">
-                <h3 class="addres__title">Address</h3>
+<div class="container my-5">
+    <div class="row content shadow-lg rounded">
+
+        <section class="col-lg-4 p-4 left text-white rounded-start">
+
+            <div class="addres mb-4">
+                <h3 class="addres__title text-uppercase fs-5 border-bottom border-secondary pb-2">Адреса</h3>
                 <p class="addres__description">SS Sterrt City/Zip Code - 456</p>
             </div>
-            <div class="photo">
+
+            <div class="photo mb-4 text-center">
                 <img
-                        class="photo_image"
+                        class="photo_image img-fluid rounded-circle border border-5 border-light"
                         src="./img/labwork07.jpg"
-                        alt="profile picture"
+                        alt="Профільне зображення"
                 />
             </div>
-            <div class="contact">
-                <h3 class="left_title contact__title">contact</h3>
 
-                <div class="contact_card">
-                    <p class="contact_card_title">Phone</p>
-                    <a class="contact_card_text" href="tel:+000 123 456 789"
-                    >+000 123 456 789</a
-                    >
-                </div>
-                <div class="contact_card">
-                    <p class="contact_card_title">Email</p>
-                    <a class="contact_card_text" href="mailto: urname@gmail.com"
-                    >urname@gmail.com</a
-                    >
-                </div>
-                <div class="contact_card">
-                    <p class="contact_card_title">Website</p>
-                    <a class="contact_card_text" href="urwebsitename.com"
-                    >urwebsitename.com</a
-                    >
-                </div>
-
+            <div class="contact mb-4">
+                <h3 class="left_title contact__title text-uppercase fs-5 border-bottom border-secondary pb-2">Контакти</h3>
+                <ul class="list-group list-group-flush contact_list">
+                    <li class="list-group-item bg-dark text-white px-0">
+                        <p class="contact_card_title fw-bold mb-0">Телефон</p>
+                        <a class="contact_card_text text-info" href="tel:+000 123 456 789">+000 123 456 789</a>
+                    </li>
+                    <li class="list-group-item bg-dark text-white px-0">
+                        <p class="contact_card_title fw-bold mb-0">Email</p>
+                        <a class="contact_card_text text-info" href="mailto: urname@gmail.com">urname@gmail.com</a>
+                    </li>
+                    <li class="list-group-item bg-dark text-white px-0">
+                        <p class="contact_card_title fw-bold mb-0">Вебсайт</p>
+                        <a class="contact_card_text text-info" href="urwebsitename.com">urwebsitename.com</a>
+                    </li>
+                </ul>
             </div>
-            <div class="reference">
-                <h3 class="left_title reference_title">reference</h3>
-                <div>
-                    <p class="reference_name">Sara Taylore</p>
-                    <p class="reference_description">Director I Company Name</p>
-                    <a class="reference_description" href="tel:+1 234 56789"
-                    >T : +1 234 56789</a
-                    >
+
+            <div class="reference mb-4">
+                <h3 class="left_title reference_title text-uppercase fs-5 border-bottom border-secondary pb-2">Рекомендації</h3>
+                <div class="card bg-secondary bg-opacity-25 border-0 p-3">
+                    <p class="reference_name fw-bold mb-1">Sara Taylore</p>
+                    <p class="reference_description text-muted mb-1">Директор | Company Name</p>
+                    <a class="reference_description text-info" href="tel:+1 234 56789">T: +1 234 56789</a>
+                </div>
+            </div>
+
+            <div class="languages mb-4">
+                <h3 class="left_title languages_title text-uppercase fs-5 border-bottom border-secondary pb-2">Мови</h3>
+
+                <div class="language_item">
+                    <div class="d-flex justify-content-between">
+                        <p class="language_name fw-normal mb-1">Українська</p>
+                        <p class="language_level text-muted mb-1">Рідна</p>
+                    </div>
+                    <div class="progress" role="progressbar" aria-label="Українська" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar" style="width: 100%"></div>
+                    </div>
+                </div>
+
+                <div class="language_item">
+                    <div class="d-flex justify-content-between">
+                        <p class="language_name fw-normal mb-1">Англійська</p>
+                        <p class="language_level text-muted mb-1">Upper-Intermediate</p>
+                    </div>
+                    <div class="progress" role="progressbar" aria-label="Англійська" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar" style="width: 80%"></div>
+                    </div>
+                </div>
+
+                <div class="language_item">
+                    <div class="d-flex justify-content-between">
+                        <p class="language_name fw-normal mb-1">Польська</p>
+                        <p class="language_level text-muted mb-1">Intermediate</p>
+                    </div>
+                    <div class="progress" role="progressbar" aria-label="Польська" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar" style="width: 65%"></div>
+                    </div>
                 </div>
             </div>
             <div class="hobbies">
-                <h3 class="left_title hobbies_title">hobbies</h3>
-                <div class="hobbies_list">
-                    <div class="hobbies_item">
-                        <img class="item_image" src="./img/travel.png" alt="" />
-                        <p class="item_text">Travel</p>
+                <h3 class="left_title hobbies_title text-uppercase fs-5 border-bottom border-secondary pb-2">Хобі</h3>
+                <div class="row g-2 hobbies_list">
+                    <div class="col-6 hobbies_item text-center">
+                        <img class="item_image img-fluid mb-1" src="./img/travel.png" alt="Travel icon" style="max-height: 40px;" />
+                        <p class="item_text">Подорожі</p>
                     </div>
-                    <div class="hobbies_item">
-                        <img class="item_image" src="./img/music.png" alt="" />
-                        <p class="item_text">Music</p>
+                    <div class="col-6 hobbies_item text-center">
+                        <img class="item_image img-fluid mb-1" src="./img/music.png" alt="Music icon" style="max-height: 40px;" />
+                        <p class="item_text">Музика</p>
                     </div>
-                    <div class="hobbies_item">
-                        <img class="item_image" src="./img/writing.png" alt="" />
-                        <p class="item_text">Writing</p>
+                    <div class="col-6 hobbies_item text-center">
+                        <img class="item_image img-fluid mb-1" src="./img/writing.png" alt="Writing icon" style="max-height: 40px;" />
+                        <p class="item_text">Письмо</p>
                     </div>
-                    <div class="hobbies_item">
-                        <img class="item_image" src="./img/chess.png" alt="" />
-                        <p class="item_text">Chess</p>
+                    <div class="col-6 hobbies_item text-center">
+                        <img class="item_image img-fluid mb-1" src="./img/chess.png" alt="Chess icon" style="max-height: 40px;" />
+                        <p class="item_text">Шахи</p>
                     </div>
                 </div>
             </div>
         </section>
-        <section class="right">
-            <div class="header">
-                <h1 class="header_title">jhon <br /><span>abirar</span></h1>
-                <p class="header__text">ui designer</p>
+
+        <section class="col-lg-8 p-4 right">
+            <div class="header mb-4 border-bottom pb-3">
+                <h1 class="header_title display-3 fw-bolder" id="personName">JHON <span class="text-secondary">ABIRAR</span></h1>
+                <p class="header__text lead text-uppercase text-secondary">UI Designer</p>
             </div>
-            <div class="aboutme">
 
-                <h3 class="left_title roll">about me</h3>
-                <div class=" roll-block"  id="about-me-container">
-
+            <div class="aboutme mb-4">
+                <div class="d-flex justify-content-between align-items-center cursor-pointer">
+                    <h3 class="left_title roll text-uppercase fs-4 mb-3 pb-2">Про мене</h3>
+                    <i class="bi bi-chevron-up text-primary fs-4 toggle-icon" data-target="about-me-content"></i>
+                </div>
+                <div class="roll-block is-open" id="about-me-content">
                     <p class="aboutme_text">
-                        Lorem ipsum dolor a consectetur adipiscing elitse eiusmod tempor
-                        incididunt labore dolore magna aliqua. Quis ipsum suspendisse
-                        ultrices gravida. Risus commodo
+                        Lorem ipsum dolor a consectetur adipiscing elitse eiusmod tempor...
                     </p>
                 </div>
-
             </div>
-            <div class="education">
-                <h3 class="left_title roll">education</h3>
-                <div class="education_list roll-block" id="education-container">
 
+            <div class="education mb-4">
+                <div class="d-flex justify-content-between align-items-center cursor-pointer">
+                    <h3 class="left_title roll text-uppercase fs-4 mb-3 pb-2">Освіта</h3>
+                    <i class="bi bi-chevron-up text-primary fs-4 toggle-icon" data-target="education-content"></i>
+                </div>
 
-                    <div class="education_card">
-                        <h4 class="education_card__title">Enter your major</h4>
-                        <p class="education_card__text">
-                            Name Of Your University 2005-2009
+                <div class="education_list roll-block is-open" id="education-content">
+                    <div class="card education_card mb-3 shadow-sm border-start border-5 border-primary">
+                        <div class="card-body p-3">
+                            <h4 class="card-title education_card__title fw-bold fs-5">Loading Education...</h4>
+                        </div>
                     </div>
-                    <div class="education_card">
-                        <h4 class="education_card__title">Enter your major</h4>
-                        <p class="education_card__text">
-                            Name Of Your University 2009-2011
-                        </p>
-                    </div>
-
-
                 </div>
             </div>
-            <div class="experience">
-                <h3 class="left_title roll">experience</h3>
-                <div class="experience_list roll-block">
 
-                    <div class="experience_card">
-                        <h4 class="experience_card__title">Enter Job Position Here</h4>
-                        <h5 class="experience_card__subtitle">
-                            <span>Present</span> Company Name / Location
-                        </h5>
-                        <p class="experience_card__text">
-                            Lorem ipsum dolor sit amet, this isthis is a thena consectetur
-                            adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                        </p>
-                    </div>
-                    <div class="experience_card">
-                        <h4 class="experience_card__title">Enter Job Position Here</h4>
-                        <h5 class="experience_card__subtitle">
-                            <span>2017 - 2019</span> Company Name / Location
-                        </h5>
-                        <p class="experience_card__text">
-                            Lorem ipsum dolor sit amet, this isthis is a thena consectetur
-                            adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                        </p>
-                    </div>
+            <div class="experience mb-4">
+                <div class="d-flex justify-content-between align-items-center cursor-pointer">
+                    <h3 class="left_title roll text-uppercase fs-4 mb-3 pb-2">Досвід</h3>
+                    <i class="bi bi-chevron-up text-primary fs-4 toggle-icon" data-target="experience-content"></i>
+                </div>
 
+                <div class="experience_list roll-block is-open" id="experience-content">
+                    <div class="card experience_card mb-3 shadow-sm border-start border-5 border-success">
+                        <div class="card-body p-3">
+                            <h4 class="card-title experience_card__title fw-bold fs-5">Loading Experience...</h4>
+                        </div>
+                    </div>
                 </div>
             </div>
+
             <div class="expertise">
-                <h2 class="left_title">Expertise</h2>
-                <div class="expertise__items">
-                    <div class="expertise__item">
-                        <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                xmlns:xlink="http://www.w3.org/1999/xlink"
-                                width="150px"
-                                height="150px"
-                                viewBox="0 0 279 278"
-                        >
-                            <path
-                                    fill-rule="evenodd"
-                                    stroke="rgb(225, 225, 225)"
-                                    stroke-width="20px"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="miter"
-                                    fill="none"
-                                    d="M131.513,29.986 C187.578,29.986 233.027,75.435 233.027,131.499 C233.027,187.564 187.578,233.013 131.513,233.013 C75.449,233.013 29.1000,187.564 29.1000,131.499 C29.1000,75.435 75.449,29.986 131.513,29.986 Z"
-                            />
-                            <path
-                                    fill-rule="evenodd"
-                                    stroke="rgb(255, 255, 255)"
-                                    stroke-width="30px"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="miter"
-                                    fill="none"
-                                    d="M194.629,211.011 C177.301,224.785 155.368,233.013 131.513,233.013 C75.449,233.013 29.1000,187.564 29.1000,131.499 C29.1000,75.435 75.449,29.986 131.513,29.986 C187.578,29.986 233.027,75.435 233.027,131.499 "
-                            />
-                            <path
-                                    fill-rule="evenodd"
-                                    stroke="rgb(219, 83, 38)"
-                                    stroke-width="20px"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="miter"
-                                    fill="none"
-                                    d="M194.629,211.011 C177.301,224.785 155.368,233.013 131.513,233.013 C75.449,233.013 29.1000,187.564 29.1000,131.499 C29.1000,75.435 75.449,29.986 131.513,29.986 C187.578,29.986 233.027,75.435 233.027,131.499 "
-                            />
-                        </svg>
-                        <p class="expertise__text">Adobe Photoshop</p>
+                <h3 class="left_title text-uppercase fs-4 mb-3 border-bottom pb-2">Експертиза</h3>
+                <div class="row row-cols-2 row-cols-md-4 g-4 expertise__items text-center">
+                    <div class="col expertise__item">
+                        <div class="p-3 border rounded d-inline-block bg-light">
+                            <i class="bi bi-image-fill text-dark" style="font-size: 2rem;"></i>
+                        </div>
+                        <p class="expertise__text mt-2">Adobe Photoshop</p>
                     </div>
-                    <div class="expertise__item">
-                        <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                xmlns:xlink="http://www.w3.org/1999/xlink"
-                                width="150px"
-                                height="150px"
-                                viewBox="0 0 279 278"
-                        >
-                            <path
-                                    fill-rule="evenodd"
-                                    stroke="rgb(225, 225, 225)"
-                                    stroke-width="20px"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="miter"
-                                    fill="none"
-                                    d="M132.487,29.986 C188.551,29.986 234.000,75.435 234.000,131.499 C234.000,187.564 188.551,233.013 132.487,233.013 C76.422,233.013 30.973,187.564 30.973,131.499 C30.973,75.435 76.422,29.986 132.487,29.986 Z"
-                            />
-                            <path
-                                    fill-rule="evenodd"
-                                    stroke="rgb(255, 255, 255)"
-                                    stroke-width="30px"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="miter"
-                                    fill="none"
-                                    d="M172.790,224.697 C160.435,230.047 146.807,233.013 132.487,233.013 C76.422,233.013 30.973,187.564 30.973,131.499 C30.973,75.435 76.422,29.986 132.487,29.986 C188.551,29.986 234.000,75.435 234.000,131.499 "
-                            />
-                            <path
-                                    fill-rule="evenodd"
-                                    stroke="rgb(219, 83, 38)"
-                                    stroke-width="20px"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="miter"
-                                    fill="none"
-                                    d="M172.790,224.697 C160.435,230.047 146.807,233.013 132.487,233.013 C76.422,233.013 30.973,187.564 30.973,131.499 C30.973,75.435 76.422,29.986 132.487,29.986 C188.551,29.986 234.000,75.435 234.000,131.499 "
-                            />
-                        </svg>
-                        <p class="expertise__text">Adobe Illustrator</p>
+
+                    <div class="col expertise__item">
+                        <div class="p-3 border rounded d-inline-block bg-light">
+                            <i class="bi bi-vector-pen text-dark" style="font-size: 2rem;"></i>
+                        </div>
+                        <p class="expertise__text mt-2">Adobe Illustrator</p>
                     </div>
-                    <div class="expertise__item">
-                        <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                xmlns:xlink="http://www.w3.org/1999/xlink"
-                                width="150px"
-                                height="150px"
-                                viewBox="0 0 279 278"
-                        >
-                            <path
-                                    fill-rule="evenodd"
-                                    stroke="rgb(225, 225, 225)"
-                                    stroke-width="20px"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="miter"
-                                    fill="none"
-                                    d="M132.460,29.986 C188.524,29.986 233.974,75.435 233.974,131.499 C233.974,187.564 188.524,233.013 132.460,233.013 C76.396,233.013 30.946,187.564 30.946,131.499 C30.946,75.435 76.396,29.986 132.460,29.986 Z"
-                            />
-                            <path
-                                    fill-rule="evenodd"
-                                    stroke="rgb(255, 255, 255)"
-                                    stroke-width="30px"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="miter"
-                                    fill="none"
-                                    d="M132.460,233.013 C76.396,233.013 30.946,187.564 30.946,131.499 C30.946,75.435 76.396,29.986 132.460,29.986 C188.524,29.986 233.974,75.435 233.974,131.499 "
-                            />
-                            <path
-                                    fill-rule="evenodd"
-                                    stroke="rgb(219, 83, 38)"
-                                    stroke-width="20px"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="miter"
-                                    fill="none"
-                                    d="M132.460,233.013 C76.396,233.013 30.946,187.564 30.946,131.499 C30.946,75.435 76.396,29.986 132.460,29.986 C188.524,29.986 233.974,75.435 233.974,131.499 "
-                            />
-                        </svg>
-                        <p class="expertise__text">Adobe Indesign</p>
+
+                    <div class="col expertise__item">
+                        <div class="p-3 border rounded d-inline-block bg-light">
+                            <i class="bi bi-book-fill text-dark" style="font-size: 2rem;"></i>
+                        </div>
+                        <p class="expertise__text mt-2">Adobe Indesign</p>
                     </div>
-                    <div class="expertise__item">
-                        <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                xmlns:xlink="http://www.w3.org/1999/xlink"
-                                width="150px"
-                                height="150px"
-                                viewBox="0 0 279 278"
-                        >
-                            <path
-                                    fill-rule="evenodd"
-                                    stroke="rgb(225, 225, 225)"
-                                    stroke-width="20px"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="miter"
-                                    fill="none"
-                                    d="M131.579,29.986 C187.644,29.986 233.093,75.435 233.093,131.499 C233.093,187.564 187.644,233.013 131.579,233.013 C75.515,233.013 30.066,187.564 30.066,131.499 C30.066,75.435 75.515,29.986 131.579,29.986 Z"
-                            />
-                            <path
-                                    fill-rule="evenodd"
-                                    stroke="rgb(255, 255, 255)"
-                                    stroke-width="30px"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="miter"
-                                    fill="none"
-                                    d="M168.970,225.905 C157.399,230.492 144.783,233.013 131.579,233.013 C75.515,233.013 30.066,187.564 30.066,131.499 C30.066,75.435 75.515,29.986 131.579,29.986 C187.644,29.986 233.093,75.435 233.093,131.499 "
-                            />
-                            <path
-                                    fill-rule="evenodd"
-                                    stroke="rgb(219, 83, 38)"
-                                    stroke-width="20px"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="miter"
-                                    fill="none"
-                                    d="M168.970,225.905 C157.399,230.492 144.783,233.013 131.579,233.013 C75.515,233.013 30.066,187.564 30.066,131.499 C30.066,75.435 75.515,29.986 131.579,29.986 C187.644,29.986 233.093,75.435 233.093,131.499 "
-                            />
-                        </svg>
-                        <p class="expertise__text">PowerPoint</p>
+
+                    <div class="col expertise__item">
+                        <div class="p-3 border rounded d-inline-block bg-light">
+                            <i class="bi bi-easel-fill text-dark" style="font-size: 2rem;"></i>
+                        </div>
+                        <p class="expertise__text mt-2">PowerPoint</p>
                     </div>
                 </div>
             </div>
@@ -312,10 +328,102 @@
 </div>
 
 
-<!-- ✅ 3. ЛОКАЛЬНИЙ BOOTSTRAP JS (скопійовано Gulp-таском 'bootstrap-js') -->
-<script src="js/bootstrap.bundle.min.js"></script>
+<script>
+    // Вбудовуємо дані для миттєвого відображення (імітація AJAX-запиту)
+    const cvData = {
+        "name": "Іван",
+        "surname": "вахула",
+        "position": "UI Designer",
+        "aboutMe": "Я — креативний UI дизайнер із 5-річним досвідом, що спеціалізується на створенні інтуїтивно зрозумілих і естетично приємних користувацьких інтерфейсів. Пристрасть до мінімалізму та функціональності.",
+        "education": [
+            { "degree": "Бакалавр прикладна математика ", "institution": "Національний університет", "years": "2018 - 2020" },
+            { "degree": "Бакалавр дизайну", "institution": "Національний університет ЛЬвіська політехніка", "years": "2014 - 2018" }
+        ],
+        "experience": [
+            { "position": "Старший UI/UX Дизайнер", "company": "Tech Innovations Inc.", "location": "Київ", "duration": "2022 - Present", "description": "Керування командою з 3 дизайнерів, розробка дизайн-системи та впровадження нових інтерфейсів для B2B платформи." },
+            { "position": "Молодший Веб-дизайнер", "company": "Creative Studio Lviv", "location": "Львів", "duration": "2019 - 2022", "description": "Створення макетів вебсайтів та мобільних додатків, тестування користувацького досвіду (UX)." }
+        ]
+    };
 
-<!-- ✅ 4. ВАШІ СКРИПТИ (скопійовано Gulp-таском 'uglify') -->
-<script src="js/all.min.js"></script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // 1. ЛОГІКА ЗГОРТАННЯ/РОЗГОРТАННЯ (ЛР №4)
+        function toggleRollBlock(element) {
+            const isOpen = element.classList.contains('is-open');
+
+            if (isOpen) {
+                element.classList.remove('is-open');
+                element.classList.add('is-closed');
+            } else {
+                element.classList.remove('is-closed');
+                element.classList.add('is-open');
+            }
+        }
+
+        document.querySelectorAll('.toggle-icon').forEach(icon => {
+            icon.closest('.d-flex').addEventListener('click', () => {
+                const targetId = icon.getAttribute('data-target');
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    toggleRollBlock(targetElement);
+                }
+            });
+        });
+
+
+        // 2. ЛОГІКА РЕНДЕРИНГУ ДАНИХ (ЛР №5)
+
+        function renderCV(data) {
+            // Оновлення імені
+            const nameElement = document.getElementById('personName');
+            if (nameElement && data.name && data.surname) {
+                nameElement.innerHTML = `${data.name.toUpperCase()} <span class="text-secondary">${data.surname.toUpperCase()}</span>`;
+            }
+
+            // Оновлення "Про мене"
+            const aboutMeElement = document.querySelector('#about-me-content .aboutme_text');
+            if (aboutMeElement && data.aboutMe) {
+                aboutMeElement.textContent = data.aboutMe;
+            }
+
+            // Оновлення Освіти
+            const educationContainer = document.getElementById('education-content');
+            if (educationContainer && data.education) {
+                educationContainer.innerHTML = data.education.map(item => `
+                    <div class="card education_card mb-3 shadow-sm border-start border-5 border-primary">
+                        <div class="card-body p-3">
+                            <h4 class="card-title education_card__title fw-bold fs-5">${item.degree}</h4>
+                            <p class="card-text education_card__text text-muted mb-0">
+                                ${item.institution} <span class="badge bg-primary">${item.years}</span>
+                            </p>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            // Оновлення Досвіду
+            const experienceContainer = document.getElementById('experience-content');
+            if (experienceContainer && data.experience) {
+                experienceContainer.innerHTML = data.experience.map(item => `
+                    <div class="card experience_card mb-3 shadow-sm border-start border-5 border-success">
+                        <div class="card-body p-3">
+                            <h4 class="card-title experience_card__title fw-bold fs-5">${item.position}</h4>
+                            <h5 class="card-subtitle experience_card__subtitle text-success mb-2">
+                                <span>${item.duration}</span> ${item.company} / ${item.location}
+                            </h5>
+                            <p class="card-text experience_card__text">
+                                ${item.description}
+                            </p>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // Запускаємо рендеринг з вбудованими даними
+        renderCV(cvData);
+    });
+</script>
 </body>
 </html>

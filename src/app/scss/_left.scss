@@ -1,43 +1,53 @@
- @use 'config';
- @use 'mixins';
+ /* 1. СТИЛІ ЛІВОГО САЙДБАРУ (_left.scss) */
+        .left {
+            background-color: var(--dark-color) !important;
+        }
 
- .left {
-     // Ліва колонка (col-md-4) має світлий фон
-     background-color: config.$primary-color-red;
-     padding: 30px;
+        .left .left_title {
+            color: var(--secondary-color);
+            border-color: var(--secondary-color) !important;
+        }
 
-     // Вкладеність для стилізації елементів всередині
-     .addres {
-         @include mixins.section-padding(0, 20px);
-         &__title {
-             @include mixins.section-title-style;
-         }
-     }
+        .left .photo_image {
+            border-color: var(--light-color) !important;
+            width: 100%;
+            max-width: 200px;
+            height: 200px;
+            object-fit: cover;
+        }
 
-     .photo {
-         margin-bottom: 30px;
-         .photo_image {
-             display: block;
-             width: 100%;
-             height: auto;
-         }
-     }
+        .left .contact_list .list-group-item {
+            border-color: rgba(255, 255, 255, 0.1) !important;
+        }
 
-     .contact, .reference, .hobbies {
-         @include mixins.section-padding(20px, 20px);
-     }
+        .left .contact_list a.contact_card_text {
+            text-decoration: none;
+            color: var(--secondary-color) !important;
+        }
+        .left .contact_list a.contact_card_text:hover {
+            text-decoration: underline;
+            color: var(--primary-color) !important;
+        }
 
-     // Стилізація контактної інформації
-     .contact_card {
-         margin-bottom: 5px;
-         &_title {
-             font-weight: bold;
-             color: config.$primary-color;
-             margin-bottom: 0;
-         }
-         &_text {
-             color: config.$text-color-light;
-             text-decoration: none;
-         }
-     }
- }
+        .left .hobbies_item .item_image {
+            filter: invert(100%); /* Інвертує колір іконок на темному фоні */
+        }
+        .left .hobbies_item .item_text {
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+
+        /* Додаткові стилі для секції мов, щоб імітувати вигляд на зображенні */
+        .language_item {
+            margin-bottom: 1rem;
+        }
+
+        .language_item .progress-bar {
+            height: 5px; /* Тонша смужка прогресу */
+            background-color: var(--secondary-color); /* Колір смужки */
+        }
+
+        .language_item .progress {
+            background-color: rgba(255, 255, 255, 0.1); /* Фон для смужки */
+            border-radius: 0; /* Прибрати заокруглення */
+        }

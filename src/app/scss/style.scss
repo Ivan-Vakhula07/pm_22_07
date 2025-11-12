@@ -1,610 +1,129 @@
-@mixin title {
-  font-family: "Bebas Neue", serif;
-  font-size: 35px;
-  letter-spacing: 4px;
-}
-$primary-color: #db5326;
-@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-
-.container {
-  max-width: 1700px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-// =========================================================
-// 🚀 ВИПРАВЛЕННЯ ДЛЯ ЗГОРТАННЯ/РОЗГОРТАННЯ
-// =========================================================
-
-.roll {
-    cursor: pointer; // Вказує, що елемент клікабельний
-    display: flex;
-    align-items: center;
-    // Додаємо відступ для стрілки, якщо вона є
-    h3 { // Застосовуємо стилі до h3 всередині .roll
-        margin-right: 10px;
-    }
-}
-
-.toggle-arrow {
-    margin-left: 10px;
-    transition: transform 0.3s ease;
-    display: inline-block;
-    font-size: 14px;
-    line-height: 1;
-}
-
-/* Стрілка при згорнутому стані (ваша логіка JS) */
-.rotated {
-    transform: rotate(-90deg);
-}
-
-
-.roll-block {
-    /* Основний стан: розгорнуто. Максимальна висота, що вмістить весь контент. */
-    overflow: hidden;
-    max-height: 1500px; /* Велике значення для коректної анімації розгортання */
-    transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
-}
-
-.roll-block.collapsed {
-    /* Стан: згорнуто. Обнуляємо висоту. */
-    max-height: 0;
-    // Обнуляємо вертикальні відступи, щоб вони не займали місця
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-}
-
-// =========================================================
-// 🔥 ГОЛОВНІ ЗМІНИ ДЛЯ ФОНУ РЕЗЮМЕ ТА СТОРІНКИ
-// =========================================================
-
-body {
-  background-color: #FFF8DC; /* ✅ Світло-жовтий фон для всієї сторінки */
-}
-
-.content {
-  display: flex;
-  justify-content: center;
-  margin: 0 auto;
-  gap: 100px;
-  background-color: white; /* ✅ Білий фон для всього резюме */
-  box-shadow: 0 0 15px rgba(0,0,0,0.1);
-}
-
-.left {
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
-  background-color: #ebebeb; /* ✅ ДОДАНО: Світло-сірий фон для лівої колонки */
-  padding: 50px 0;
-}
-
-// =========================================================
-// ✏️ СТИЛІ ЛІВОЇ КОЛОНКИ
-// =========================================================
-
-.left_title {
-  @include title;
-}
-
-.addres {
-  padding: 0 60px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.addres__title {
-  color: $primary-color;
-  font-family: "Open Sans", serif;
-}
-
-.addres__description {
-  font-family: "Open Sans", serif;
-  color: #000;
-}
-
-.photo {
-  width: 400px;
-}
-
-.photo_image {
-  width: 400px;
-  object-fit: fill;
-  background-color: $primary-color;
-  padding: 20px 0;
-  height: auto;
-}
-
-.contact {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  padding: 0 60px;
-}
-
-.contact_card {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.contact_card_title {
-  font-family: "Open Sans", serif;
-  color: #000;
-  font-size: 20px;
-  font-weight: 700;
-}
-
-.contact_card_text {
-  font-family: "Open Sans", serif;
-  color: #000;
-  font-size: 17px;
-}
-
-.reference {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  padding: 0 60px;
-}
-
-.reference_name {
-  font-family: "Open Sans", serif;
-  color: #000;
-  font-size: 17px;
-  font-weight: 700;
-  margin-bottom: 5px;
-}
-
-.reference_description {
-  font-family: "Open Sans", serif;
-  color: #000;
-  font-size: 17px;
-  margin-bottom: 5px;
-}
-
-.hobbies {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  padding: 0 60px;
-}
-
-.hobbies_list {
-  display: flex;
-  justify-content: space-between;
-}
-
-.hobbies_item {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.item_image {
-  width: 50px;
-  height: 50px;
-}
-
-.item_text {
-  font-family: "Open Sans", serif;
-  color: #000;
-  font-size: 17px;
-  font-weight: 500;
-}
-
-// =========================================================
-// ✏️ СТИЛІ ПРАВОЇ КОЛОНКИ
-// =========================================================
-
-.right {
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
-  padding: 0px 0;
-}
-
-.header {
-  margin-bottom: 50px;
-}
-
-.header_title {
-  font-family: "Bebas Neue", serif;
-  font-size: 80px;
-  letter-spacing: 5px;
-  font-weight: 200;
-  color: #22222d;
-  margin: 0;
-  margin-bottom: 20px;
-  margin-top: 70px;
-}
-
-.header_title span {
-  font-family: "Bebas Neue", serif;
-  font-size: 80px;
-  letter-spacing: 5px;
-  font-weight: 700;
-  color: #22222d;
-}
-
-.header_title span::after {
-  content: "";
-  display: block;
-  width: 50px;
-  height: 3px;
-  background-color: $primary-color;
-  margin-top: 10px;
-}
-
-.header__text {
-  font-family: "Bebas Neue", serif;
-  font-size: 30px;
-  letter-spacing: 8px;
-  color: #22222d;
-}
-
-.aboutme {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
-
-.aboutme_text {
-  font-family: "Poppins", sans-serif;
-  width: 800px;
-  font-size: 20px;
-  letter-spacing: 3px;
-  line-height: 35px;
-  color: #22222d;
-}
-
-.education {
-  display: flex;
-  flex-direction: column;
-  gap: 35px;
-}
-
-.education_list {
-  display: flex;
-  gap: 200px;
-}
-
-.education_card {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  width: 200px;
-}
-
-.education_card__title {
-  font-family: "Open Sans", serif;
-  font-size: 20px;
-  margin-bottom: 5px;
-  text-transform: uppercase;
-}
-
-.education_card__text {
-  font-family: "Open Sans", serif;
-  font-size: 17px;
-  margin-bottom: 5px;
-  line-height: 28px;
-}
-
-.experience {
-  display: flex;
-  flex-direction: column;
-  gap: 35px;
-}
-
-.experience_list {
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
-}
-
-.experience_card {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.experience_card__title {
-  font-family: "Open Sans", serif;
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-
-.experience_card__subtitle {
-  font-family: "Open Sans", serif;
-  font-size: 17px;
-  align-items: center;
-}
-
-.experience_card__subtitle span {
-  font-family: "Open Sans", serif;
-  background-color: $primary-color;
-  font-size: 17px;
-  padding: 0 10px;
-  color: #fff;
-  border-radius: 5px;
-  margin-right: 10px;
-  font-weight: 400;
-}
-
-.experience_card__text {
-  font-family: "Open Sans", serif;
-  font-size: 17px;
-  margin-bottom: 5px;
-  line-height: 28px;
-  width: 550px;
-}
-
-.expertise {
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
-}
-
-.expertise__title {
-  font-family: "Bebas Neue", sans-serif;
-  font-size: 24px;
-  letter-spacing: 2px;
-  margin-bottom: 20px;
-}
-
-.expertise__items {
-  display: flex;
-  gap: 20px;
-}
-
-.expertise__item {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.expertise__text {
-  position: absolute;
-  /* ✅ ВИПРАВЛЕННЯ ВИРІВНЮВАННЯ */
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: "Poppins", serif;
-  font-size: 14px;
-  margin-top: 0; /* Обнуляємо, щоб transform працював ідеально */
-  text-align: center;
-}
-
-.progress-ring {
-  position: relative;
-  transform: rotate(-90deg);
-}
-
-.progress-ring__background {
-  fill: none;
-  stroke: #ddd;
-  stroke-width: 10;
-}
-
-.progress-ring__progress {
-  fill: none;
-  stroke: $primary-color;
-  stroke-width: 10;
-  stroke-linecap: round;
-  stroke-dasharray: 283;
-  stroke-dashoffset: 283;
-  transition: stroke-dashoffset 0.6s ease-out;
-}
-
-/* --- Normalize/Reset Styles --- */
-
-*,
-*:after,
-*:before {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-ul,
-li {
-  list-style-type: none;
-}
-
-img {
-  user-select: none;
-  pointer-events: none;
-}
-
-button {
-  cursor: pointer;
-}
-
-/* normalize.css v8.0.1 */
-
-html {
-  line-height: 1.15;
-  -webkit-text-size-adjust: 100%;
-}
-
-main {
-  display: block;
-}
-
-h1 {
-  font-size: 2em;
-  margin: 0.67em 0;
-}
-
-hr {
-  box-sizing: content-box;
-  height: 0;
-  overflow: visible;
-}
-
-pre {
-  font-family: monospace, monospace;
-  font-size: 1em;
-}
-
-a {
-  background-color: transparent;
-}
-
-abbr[title] {
-  border-bottom: none;
-  text-decoration: underline;
-  text-decoration: underline dotted;
-}
-
-b,
-strong {
-  font-weight: bolder;
-}
-
-code,
-kbd,
-samp {
-  font-family: monospace, monospace;
-  font-size: 1em;
-}
-
-small {
-  font-size: 80%;
-}
-
-sub,
-sup {
-  font-size: 75%;
-  line-height: 0;
-  position: relative;
-  vertical-align: baseline;
-}
-
-sub {
-  bottom: -0.25em;
-}
-
-sup {
-  top: -0.5em;
-}
-
-img {
-  border-style: none;
-}
-
-button,
-input,
-optgroup,
-select,
-textarea {
-  font-family: inherit;
-  font-size: 100%;
-  line-height: 1.15;
-  margin: 0;
-}
-
-button,
-input {
-  overflow: visible;
-}
-
-button,
-select {
-  text-transform: none;
-}
-
-button,
-[type="button"],
-[type="reset"],
-[type="submit"] {
-  -webkit-appearance: button;
-}
-
-button::-moz-focus-inner,
-[type="button"]::-moz-focus-inner,
-[type="reset"]::-moz-focus-inner,
-[type="submit"]::-moz-focus-inner {
-  border-style: none;
-  padding: 0;
-}
-
-button:-moz-focusring,
-[type="button"]:-moz-focusring,
-[type="reset"]:-moz-focusring,
-[type="submit"]:-moz-focusring {
-  outline: 1px dotted ButtonText;
-}
-
-fieldset {
-  padding: 0.35em 0.75em 0.625em;
-}
-
-legend {
-  box-sizing: border-box;
-  color: inherit;
-  display: table;
-  max-width: 100%;
-  padding: 0;
-  white-space: normal;
-}
-
-progress {
-  vertical-align: baseline;
-}
-
-textarea {
-  overflow: auto;
-}
-
-[type="checkbox"],
-[type="radio"] {
-  box-sizing: border-box;
-  padding: 0;
-}
-
-[type="number"]::-webkit-inner-spin-button,
-[type="number"]::-webkit-outer-spin-button {
-  height: auto;
-}
-
-[type="search"] {
-  -webkit-appearance: textfield;
-  outline-offset: -2px;
-}
-
-[type="search"]::-webkit-search-decoration {
-  -webkit-appearance: none;
-}
-
-::-webkit-file-upload-button {
-  -webkit-appearance: button;
-  font: inherit;
-}
-
-details {
-  display: block;
-}
-
-summary {
-  display: list-item;
-}
-
-template {
-  display: none;
-}
-
-[hidden] {
-  display: none;
-}
+ /* Змінні (з _config.scss) */
+        :root {
+            --primary-color: #2b7a78;
+            --secondary-color: #3aafa9;
+            --dark-color: #17252a;
+            --light-color: #def2f1;
+            --transition-speed: 0.3s;
+        }
+
+        /* Глобальні стилі */
+        .container {
+            max-width: 1000px;
+        }
+
+        .content {
+            background: white;
+            min-height: 85vh; /* Для десктопу */
+        }
+
+        /* 1. СТИЛІ ЛІВОГО САЙДБАРУ (_left.scss) */
+        .left {
+            background-color: var(--dark-color) !important;
+        }
+
+        .left .left_title {
+            color: var(--secondary-color);
+            border-color: var(--secondary-color) !important;
+        }
+
+        .left .photo_image {
+            border-color: var(--light-color) !important;
+            width: 100%;
+            max-width: 200px;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .left .contact_list .list-group-item {
+            border-color: rgba(255, 255, 255, 0.1) !important;
+        }
+
+        .left .contact_list a.contact_card_text {
+            text-decoration: none;
+            color: var(--secondary-color) !important;
+        }
+        .left .contact_list a.contact_card_text:hover {
+            text-decoration: underline;
+            color: var(--primary-color) !important;
+        }
+
+        .left .hobbies_item .item_image {
+            filter: invert(100%); /* Інвертує колір іконок на темному фоні */
+        }
+        .left .hobbies_item .item_text {
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+
+        /* Додаткові стилі для секції мов, щоб імітувати вигляд на зображенні */
+        .language_item {
+            margin-bottom: 1rem;
+        }
+
+        .language_item .progress-bar {
+            height: 5px; /* Тонша смужка прогресу */
+            background-color: var(--secondary-color); /* Колір смужки */
+        }
+
+        .language_item .progress {
+            background-color: rgba(255, 255, 255, 0.1); /* Фон для смужки */
+            border-radius: 0; /* Прибрати заокруглення */
+        }
+
+        /* 2. СТИЛІ ПРАВОЇ КОЛОНКИ (_right.scss) */
+        .right .header .header_title {
+            color: var(--primary-color) !important;
+        }
+        .right .header .header__text {
+            color: var(--dark-color) !important;
+        }
+
+        .right .left_title {
+            color: var(--dark-color);
+            font-weight: 700;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        /* Ефекти наведення на картки (ЛР №3) */
+        .right .education_card, .right .experience_card {
+            transition: transform var(--transition-speed);
+            cursor: pointer;
+        }
+        .right .education_card:hover, .right .experience_card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0.5rem 1rem rgba(43, 122, 120, 0.15) !important; /* Використання $primary-color */
+        }
+
+        .right .expertise__item .p-3 {
+            border-color: var(--secondary-color) !important;
+            background-color: var(--light-color) !important;
+        }
+
+        /* 3. СТИЛІ ДЛЯ ЗГОРТАННЯ (ЛР №4) */
+        .roll-block {
+            max-height: 500px; /* Початкова висота */
+            overflow: hidden;
+            transition: max-height var(--transition-speed) ease-in-out, opacity var(--transition-speed) ease-in-out;
+            opacity: 1;
+        }
+        .roll-block.is-closed {
+            max-height: 0;
+            opacity: 0;
+            margin-bottom: 0 !important;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+        }
+
+        .toggle-icon {
+            cursor: pointer;
+            transition: transform var(--transition-speed);
+        }
+        .d-flex.cursor-pointer {
+            cursor: pointer; /* Для всієї області заголовка */
+        }
+        /* Обертання іконки для закритого стану */
+        .roll-block.is-closed + .toggle-icon,
+        .roll-block.is-closed ~ .toggle-icon {
+             transform: rotate(180deg);
+        }

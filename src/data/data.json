@@ -1,40 +1,55 @@
 {
-  "personal": {
-    "firstName": "Jhon",
-    "lastName": "Abirar",
-    "position": "UI Designer",
-    "aboutMe": "Lorem ipsum dolor a consectetur adipiscing elitse eiusmod tempor incididunt labore dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo",
-    "email": "urname@gmail.com",
-    "phone": "+000 123 456 789"
+  "firstName": "Іван",
+  "lastName": "ВАХУЛА",
+  "position": "UI/UX Дизайнер",
+  "aboutMe": "Я — креативний UI/UX дизайнер із 5-річним досвідом, що спеціалізується на створенні інтуїтивно зрозумілих і естетично приємних користувацьких інтерфейсів. Пристрасть до мінімалізму, функціональності та розробки дизайн-систем.",
+  "address": "м. Львів, вул. Наукова, 123",
+  "phone": "+380 98 765 4321",
+  "email": "ivan.vahula@example.com",
+  "website": "vahula-design.com",
+  "reference": {
+    "name": "Олена Коваль",
+    "title": "Керівник відділу дизайну | Digital Solutions",
+    "phone": "+380 50 111 2233"
   },
+  "hobbies": [
+    "Подорожі",
+    "Музика",
+    "Письмо",
+    "Шахи"
+  ],
+  "expertise": [
+    "Figma/Sketch",
+    "Adobe Illustrator",
+    "HTML/CSS/JS",
+    "Prototyping"
+  ],
   "education": [
     {
-      "major": "Enter your major (Master)",
-      "university": "Name Of Your University 2005-2009"
+      "degree": "Магістр інженерії ПЗ",
+      "institution": "Національний університет",
+      "years": "2018 - 2020"
     },
     {
-      "major": "Enter your major (Bachelor)",
-      "university": "Name Of Your University 2009-2011"
+      "degree": "Бакалавр дизайну",
+      "institution": "Національний університет ЛЬвіська політехніка",
+      "years": "2014 - 2018"
     }
   ],
   "experience": [
     {
-      "title": "Senior Job Position Here",
-      "period": "Present",
-      "location": "Company Name / Location",
-      "description": "Lorem ipsum dolor sit amet, this isthis is a thena consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."
+      "position": "Старший UI/UX Дизайнер",
+      "company": "Tech Innovations Inc.",
+      "location": "Київ",
+      "duration": "2022 - Present",
+      "description": "Керування командою, повна розробка та впровадження модульної дизайн-системи, що підвищило швидкість розробки на 30%."
     },
     {
-      "title": "Junior Job Position Here",
-      "period": "2017 - 2019",
-      "location": "Another Company / City",
-      "description": "Lorem ipsum dolor sit amet, this isthis is a thena consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."
+      "position": "Молодший Веб-дизайнер",
+      "company": "Creative Studio Lviv",
+      "location": "Львів",
+      "duration": "2019 - 2022",
+      "description": "Створення прототипів, вайрфреймів та фінальних макетів для 15+ клієнтських вебсайтів."
     }
-  ],
-  "expertise": [
-    { "skill": "Adobe Photoshop", "level": "90%" },
-    { "skill": "Adobe Illustrator", "level": "80%" },
-    { "skill": "Adobe Indesign", "level": "70%" },
-    { "skill": "PowerPoint", "level": "95%" }
   ]
 }
