@@ -1,43 +1,132 @@
- @use 'config';
- @use 'mixins';
+@use 'config'; // Імпортуємо змінні та міксини
 
- .left {
-     // Ліва колонка (col-md-4) має світлий фон
-     background-color: config.$primary-color-red;
-     padding: 30px;
+// =========================================================
+// ✏️ СТИЛІ ЛІВОЇ КОЛОНКИ
+// =========================================================
 
-     // Вкладеність для стилізації елементів всередині
-     .addres {
-         @include mixins.section-padding(0, 20px);
-         &__title {
-             @include mixins.section-title-style;
-         }
-     }
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  background-color: #ebebeb;
+  padding: 50px 0;
+}
 
-     .photo {
-         margin-bottom: 30px;
-         .photo_image {
-             display: block;
-             width: 100%;
-             height: auto;
-         }
-     }
+.left_title {
+  @include config.title;
+}
 
-     .contact, .reference, .hobbies {
-         @include mixins.section-padding(20px, 20px);
-     }
+.addres {
+  padding: 0 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+}
 
-     // Стилізація контактної інформації
-     .contact_card {
-         margin-bottom: 5px;
-         &_title {
-             font-weight: bold;
-             color: config.$primary-color;
-             margin-bottom: 0;
-         }
-         &_text {
-             color: config.$text-color-light;
-             text-decoration: none;
-         }
-     }
- }
+.addres__title {
+  color: config.$primary-color;
+  font-family: "Open Sans", serif;
+}
+
+.addres__description {
+  font-family: "Open Sans", serif;
+  color: #000;
+}
+
+.photo {
+  width: 400px;
+}
+
+.photo_image {
+  width: 400px;
+  object-fit: fill;
+  background-color: config.$primary-color;
+  padding: 20px 0;
+  height: auto;
+}
+
+// ----------------------------------------------------
+// 🎯 СТИЛІ ДЛЯ CONTACT (вирівняні Phone, Email, Website)
+// ----------------------------------------------------
+/* --- CONTACT --- */
+.contact {
+  padding: 0 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Відступ між картками контактів (Phone, Email, Website) */
+  margin-bottom: 30px;
+}
+
+.contact_card {
+  display: flex;
+  flex-direction: column;
+  /* gap: 0px; - Встановлено в 0 або не потрібно, оскільки ми використовуємо margin-bottom */
+}
+
+.contact_card_title {
+  font-family: "Open Sans", serif;
+  color: #000;
+  font-size: 20px;
+  font-weight: 700;
+  /* ✅ ВИПРАВЛЕНО: Окремий відступ між заголовком і описом (як ви просили) */
+  margin-bottom: 3px;
+}
+
+.contact_card_text {
+  font-family: "Open Sans", serif;
+  color: #000;
+  font-size: 17px;
+  text-decoration: none; /* Прибрати підкреслення з посилань */
+}
+
+.reference {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 0 60px;
+}
+
+.reference_name {
+  font-family: "Open Sans", serif;
+  color: #000;
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.reference_description {
+  font-family: "Open Sans", serif;
+  color: #000;
+  font-size: 17px;
+  margin-bottom: 5px;
+}
+
+.hobbies {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 0 60px;
+}
+
+.hobbies_list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.hobbies_item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.item_image {
+  width: 50px;
+  height: 50px;
+}
+
+.item_text {
+  font-family: "Open Sans", serif;
+  color: #000;
+  font-size: 17px;
+  font-weight: 500;
+}

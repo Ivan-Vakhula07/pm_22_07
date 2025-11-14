@@ -43,7 +43,7 @@ gulp.task('bootstrap-js', () => {
 
 // 1. Таск Styles: Компіляція SCSS та мінімізація
 gulp.task('styles', () => {
-    return src('src/app/scss/style.scss')
+    return src('src/app/scss/index.scss')
         .pipe(sass().on('error', sass.logError)) // Компіляція SCSS
         .pipe(postcss([cssnano()])) // Мінімізація CSS
         .pipe(rename({ suffix: '.min' }))
