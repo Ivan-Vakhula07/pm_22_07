@@ -8,137 +8,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    <style>
-        /* Змінні (з _config.scss) */
-        :root {
-            --primary-color: #2b7a78;
-            --secondary-color: #3aafa9;
-            --dark-color: #17252a;
-            --light-color: #def2f1;
-            --transition-speed: 0.3s;
-        }
+    <link href="css/style.min.css" rel="stylesheet" />
+    <link href="css/index.min.css" rel="stylesheet" />
 
-        /* Глобальні стилі */
-        .container {
-            max-width: 1000px;
-        }
-
-        .content {
-            background: white;
-            min-height: 85vh; /* Для десктопу */
-        }
-
-        /* 1. СТИЛІ ЛІВОГО САЙДБАРУ (_left.scss) */
-        .left {
-            background-color: var(--dark-color) !important;
-        }
-
-        .left .left_title {
-            color: var(--secondary-color);
-            border-color: var(--secondary-color) !important;
-        }
-
-        .left .photo_image {
-            border-color: var(--light-color) !important;
-            width: 100%;
-            max-width: 200px;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .left .contact_list .list-group-item {
-            border-color: rgba(255, 255, 255, 0.1) !important;
-        }
-
-        .left .contact_list a.contact_card_text {
-            text-decoration: none;
-            color: var(--secondary-color) !important;
-        }
-        .left .contact_list a.contact_card_text:hover {
-            text-decoration: underline;
-            color: var(--primary-color) !important;
-        }
-
-        .left .hobbies_item .item_image {
-            filter: invert(100%); /* Інвертує колір іконок на темному фоні */
-        }
-        .left .hobbies_item .item_text {
-            font-size: 0.9rem;
-            margin-bottom: 0;
-        }
-
-        /* Додаткові стилі для секції мов, щоб імітувати вигляд на зображенні */
-        .language_item {
-            margin-bottom: 1rem;
-        }
-
-        .language_item .progress-bar {
-            height: 5px; /* Тонша смужка прогресу */
-            background-color: var(--secondary-color); /* Колір смужки */
-        }
-
-        .language_item .progress {
-            background-color: rgba(255, 255, 255, 0.1); /* Фон для смужки */
-            border-radius: 0; /* Прибрати заокруглення */
-        }
-
-        /* 2. СТИЛІ ПРАВОЇ КОЛОНКИ (_right.scss) */
-        .right .header .header_title {
-            color: var(--primary-color) !important;
-        }
-        .right .header .header__text {
-            color: var(--dark-color) !important;
-        }
-
-        .right .left_title {
-            color: var(--dark-color);
-            font-weight: 700;
-            border-bottom: 2px solid var(--secondary-color);
-        }
-
-        /* Ефекти наведення на картки (ЛР №3) */
-        .right .education_card, .right .experience_card {
-            transition: transform var(--transition-speed);
-            cursor: pointer;
-        }
-        .right .education_card:hover, .right .experience_card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0.5rem 1rem rgba(43, 122, 120, 0.15) !important; /* Використання $primary-color */
-        }
-
-        .right .expertise__item .p-3 {
-            border-color: var(--secondary-color) !important;
-            background-color: var(--light-color) !important;
-        }
-
-        /* 3. СТИЛІ ДЛЯ ЗГОРТАННЯ (ЛР №4) */
-        .roll-block {
-            max-height: 500px; /* Початкова висота */
-            overflow: hidden;
-            transition: max-height var(--transition-speed) ease-in-out, opacity var(--transition-speed) ease-in-out;
-            opacity: 1;
-        }
-        .roll-block.is-closed {
-            max-height: 0;
-            opacity: 0;
-            margin-bottom: 0 !important;
-            padding-top: 0 !important;
-            padding-bottom: 0 !important;
-        }
-
-        .toggle-icon {
-            cursor: pointer;
-            transition: transform var(--transition-speed);
-        }
-        .d-flex.cursor-pointer {
-            cursor: pointer; /* Для всієї області заголовка */
-        }
-        /* Обертання іконки для закритого стану */
-        .roll-block.is-closed + .toggle-icon,
-        .roll-block.is-closed ~ .toggle-icon {
-             transform: rotate(180deg);
-        }
-    </style>
 </head>
 
 <body>
@@ -148,20 +20,20 @@
         <section class="col-lg-4 p-4 left text-white rounded-start">
 
             <div class="addres mb-4">
-                <h3 class="addres__title text-uppercase fs-5 border-bottom border-secondary pb-2">Адреса</h3>
+                <h3 class="addres__title left_title text-uppercase fs-5 border-bottom pb-2">Адреса</h3>
                 <p class="addres__description">SS Sterrt City/Zip Code - 456</p>
             </div>
 
             <div class="photo mb-4 text-center">
                 <img
-                        class="photo_image img-fluid rounded-circle border border-5 border-light"
+                        class="photo_image img-fluid rounded-circle border border-5"
                         src="./img/labwork07.jpg"
                         alt="Профільне зображення"
                 />
             </div>
 
             <div class="contact mb-4">
-                <h3 class="left_title contact__title text-uppercase fs-5 border-bottom border-secondary pb-2">Контакти</h3>
+                <h3 class="left_title contact__title text-uppercase fs-5 border-bottom pb-2">Контакти</h3>
                 <ul class="list-group list-group-flush contact_list">
                     <li class="list-group-item bg-dark text-white px-0">
                         <p class="contact_card_title fw-bold mb-0">Телефон</p>
@@ -179,7 +51,7 @@
             </div>
 
             <div class="reference mb-4">
-                <h3 class="left_title reference_title text-uppercase fs-5 border-bottom border-secondary pb-2">Рекомендації</h3>
+                <h3 class="left_title reference_title text-uppercase fs-5 border-bottom pb-2">Рекомендації</h3>
                 <div class="card bg-secondary bg-opacity-25 border-0 p-3">
                     <p class="reference_name fw-bold mb-1">Sara Taylore</p>
                     <p class="reference_description text-muted mb-1">Директор | Company Name</p>
@@ -188,7 +60,7 @@
             </div>
 
             <div class="languages mb-4">
-                <h3 class="left_title languages_title text-uppercase fs-5 border-bottom border-secondary pb-2">Мови</h3>
+                <h3 class="left_title languages_title text-uppercase fs-5 border-bottom pb-2">Мови</h3>
 
                 <div class="language_item">
                     <div class="d-flex justify-content-between">
@@ -220,8 +92,9 @@
                     </div>
                 </div>
             </div>
+
             <div class="hobbies">
-                <h3 class="left_title hobbies_title text-uppercase fs-5 border-bottom border-secondary pb-2">Хобі</h3>
+                <h3 class="left_title hobbies_title text-uppercase fs-5 border-bottom pb-2">Хобі</h3>
                 <div class="row g-2 hobbies_list">
                     <div class="col-6 hobbies_item text-center">
                         <img class="item_image img-fluid mb-1" src="./img/travel.png" alt="Travel icon" style="max-height: 40px;" />
@@ -255,9 +128,7 @@
                     <i class="bi bi-chevron-up text-primary fs-4 toggle-icon" data-target="about-me-content"></i>
                 </div>
                 <div class="roll-block is-open" id="about-me-content">
-                    <p class="aboutme_text">
-                        Lorem ipsum dolor a consectetur adipiscing elitse eiusmod tempor...
-                    </p>
+                    <p class="aboutme_text">Loading about me...</p>
                 </div>
             </div>
 
@@ -294,32 +165,29 @@
             <div class="expertise">
                 <h3 class="left_title text-uppercase fs-4 mb-3 border-bottom pb-2">Експертиза</h3>
                 <div class="row row-cols-2 row-cols-md-4 g-4 expertise__items text-center">
+
                     <div class="col expertise__item">
-                        <div class="p-3 border rounded d-inline-block bg-light">
-                            <i class="bi bi-image-fill text-dark" style="font-size: 2rem;"></i>
+                        <div class="circular-progress" style="--p:85%">
+                            <div class="text-content">Adobe<br>Photoshop</div>
                         </div>
-                        <p class="expertise__text mt-2">Adobe Photoshop</p>
                     </div>
 
                     <div class="col expertise__item">
-                        <div class="p-3 border rounded d-inline-block bg-light">
-                            <i class="bi bi-vector-pen text-dark" style="font-size: 2rem;"></i>
+                        <div class="circular-progress" style="--p:75%">
+                            <div class="text-content">Adobe<br>Illustrator</div>
                         </div>
-                        <p class="expertise__text mt-2">Adobe Illustrator</p>
                     </div>
 
                     <div class="col expertise__item">
-                        <div class="p-3 border rounded d-inline-block bg-light">
-                            <i class="bi bi-book-fill text-dark" style="font-size: 2rem;"></i>
+                        <div class="circular-progress" style="--p:60%">
+                            <div class="text-content">Adobe<br>Indesign</div>
                         </div>
-                        <p class="expertise__text mt-2">Adobe Indesign</p>
                     </div>
 
                     <div class="col expertise__item">
-                        <div class="p-3 border rounded d-inline-block bg-light">
-                            <i class="bi bi-easel-fill text-dark" style="font-size: 2rem;"></i>
+                        <div class="circular-progress" style="--p:90%">
+                            <div class="text-content">Power<br>Point</div>
                         </div>
-                        <p class="expertise__text mt-2">PowerPoint</p>
                     </div>
                 </div>
             </div>
@@ -327,9 +195,9 @@
     </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-    // Вбудовуємо дані для миттєвого відображення (імітація AJAX-запиту)
     const cvData = {
         "name": "Іван",
         "surname": "вахула",
@@ -347,7 +215,7 @@
 
     document.addEventListener('DOMContentLoaded', () => {
 
-        // 1. ЛОГІКА ЗГОРТАННЯ/РОЗГОРТАННЯ (ЛР №4)
+        // 1. ЛОГІКА ЗГОРТАННЯ/РОЗГОРТАННЯ
         function toggleRollBlock(element) {
             const isOpen = element.classList.contains('is-open');
 
@@ -372,10 +240,10 @@
         });
 
 
-        // 2. ЛОГІКА РЕНДЕРИНГУ ДАНИХ (ЛР №5)
+        // 2. ЛОГІКА РЕНДЕРИНГУ ДАНИХ
 
         function renderCV(data) {
-            // Оновлення імені
+            // Оновлення імені та позиції
             const nameElement = document.getElementById('personName');
             if (nameElement && data.name && data.surname) {
                 nameElement.innerHTML = `${data.name.toUpperCase()} <span class="text-secondary">${data.surname.toUpperCase()}</span>`;

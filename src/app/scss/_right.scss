@@ -1,56 +1,61 @@
- /* 2. СТИЛІ ПРАВОЇ КОЛОНКИ (_right.scss) */
-        .right .header .header_title {
-            color: var(--primary-color) !important;
-        }
-        .right .header .header__text {
-            color: var(--dark-color) !important;
-        }
+/* ========================================================= */
+/* _right.scss: СТИЛІ ПРАВОЇ КОЛОНКИ */
+/* ========================================================= */
+.right .header .header_title {
+    color: var(--primary-color) !important;
+}
+.right .header .header__text {
+    color: var(--dark-color) !important;
+}
 
-        .right .left_title {
-            color: var(--dark-color);
-            font-weight: 700;
-            border-bottom: 2px solid var(--secondary-color);
-        }
+.right .left_title {
+    color: var(--dark-color);
+    font-weight: 700;
+    border-bottom: 2px solid var(--secondary-color);
+}
 
-        /* Ефекти наведення на картки (ЛР №3) */
-        .right .education_card, .right .experience_card {
-            transition: transform var(--transition-speed);
-            cursor: pointer;
-        }
-        .right .education_card:hover, .right .experience_card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0.5rem 1rem rgba(43, 122, 120, 0.15) !important; /* Використання $primary-color */
-        }
+/* Секція Expertise (іконки) */
+.right .expertise__item .p-3 {
+    border-color: var(--secondary-color) !important;
+    background-color: var(--light-color) !important;
+}
 
-        .right .expertise__item .p-3 {
-            border-color: var(--secondary-color) !important;
-            background-color: var(--light-color) !important;
-        }
+/* Ефекти наведення на картки (ЛР №3) */
+.right .education_card, .right .experience_card {
+    transition: transform var(--transition-speed);
+    cursor: pointer;
+}
+.right .education_card:hover, .right .experience_card:hover {
+    transform: translateY(-3px);
+    /* Використання тіні на основі --primary-color */
+    box-shadow: 0 0.5rem 1rem rgba(43, 122, 120, 0.15) !important;
+}
 
-        /* 3. СТИЛІ ДЛЯ ЗГОРТАННЯ (ЛР №4) */
-        .roll-block {
-            max-height: 500px; /* Початкова висота */
-            overflow: hidden;
-            transition: max-height var(--transition-speed) ease-in-out, opacity var(--transition-speed) ease-in-out;
-            opacity: 1;
-        }
-        .roll-block.is-closed {
-            max-height: 0;
-            opacity: 0;
-            margin-bottom: 0 !important;
-            padding-top: 0 !important;
-            padding-bottom: 0 !important;
-        }
+/* СТИЛІ ДЛЯ ЗГОРТАННЯ (COLLAPSE - якщо ви не виділяєте це в окремий файл) */
 
-        .toggle-icon {
-            cursor: pointer;
-            transition: transform var(--transition-speed);
-        }
-        .d-flex.cursor-pointer {
-            cursor: pointer; /* Для всієї області заголовка */
-        }
-        /* Обертання іконки для закритого стану */
-        .roll-block.is-closed + .toggle-icon,
-        .roll-block.is-closed ~ .toggle-icon {
-             transform: rotate(180deg);
-        }
+.roll-block {
+    max-height: 500px; /* Початкова висота */
+    overflow: hidden;
+    transition: max-height var(--transition-speed) ease-in-out, opacity var(--transition-speed) ease-in-out;
+    opacity: 1;
+}
+.roll-block.is-closed {
+    max-height: 0;
+    opacity: 0;
+    margin-bottom: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.toggle-icon {
+    cursor: pointer;
+    transition: transform var(--transition-speed);
+}
+.d-flex.cursor-pointer {
+    cursor: pointer;
+}
+/* Обертання іконки для закритого стану */
+.roll-block.is-closed + .toggle-icon,
+.roll-block.is-closed ~ .toggle-icon {
+     transform: rotate(180deg);
+}

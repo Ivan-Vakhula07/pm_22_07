@@ -1,18 +1,10 @@
- /* Змінні (з _config.scss) */
-        :root {
-            --primary-color: #2b7a78;
-            --secondary-color: #3aafa9;
-            --dark-color: #17252a;
-            --light-color: #def2f1;
-            --transition-speed: 0.3s;
-        }
-
-        /* Глобальні стилі */
-        .container {
-            max-width: 1000px;
-        }
-
-        .content {
-            background: white;
-            min-height: 85vh; /* Для десктопу */
-        }
+/* ========================================================= */
+/* _config.scss: ЗМІННІ */
+/* ========================================================= */
+:root {
+    --primary-color: #2b7a78;
+    --secondary-color: #3aafa9;
+    --dark-color: #17252a;
+    --light-color: #def2f1;
+    --transition-speed: 0.3s;
+}

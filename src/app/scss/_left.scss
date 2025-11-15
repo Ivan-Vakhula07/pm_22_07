@@ -1,53 +1,51 @@
- /* 1. СТИЛІ ЛІВОГО САЙДБАРУ (_left.scss) */
-        .left {
-            background-color: var(--dark-color) !important;
-        }
+/* ========================================================= */
+/* _left.scss: СТИЛІ ЛІВОЇ КОЛОНКИ */
+/* ========================================================= */
+.left {
+    background-color: var(--dark-color) !important;
+}
 
-        .left .left_title {
-            color: var(--secondary-color);
-            border-color: var(--secondary-color) !important;
-        }
+.left .left_title {
+    color: var(--secondary-color);
+    border-color: var(--secondary-color) !important;
+}
 
-        .left .photo_image {
-            border-color: var(--light-color) !important;
-            width: 100%;
-            max-width: 200px;
-            height: 200px;
-            object-fit: cover;
-        }
+.left .photo_image {
+    border-color: var(--light-color) !important;
+    width: 100%;
+    max-width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
 
-        .left .contact_list .list-group-item {
-            border-color: rgba(255, 255, 255, 0.1) !important;
-        }
+.left .contact_list .list-group-item {
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
 
-        .left .contact_list a.contact_card_text {
-            text-decoration: none;
-            color: var(--secondary-color) !important;
-        }
-        .left .contact_list a.contact_card_text:hover {
-            text-decoration: underline;
-            color: var(--primary-color) !important;
-        }
+.left .contact_list a.contact_card_text {
+    text-decoration: none;
+    color: var(--secondary-color) !important;
+}
+.left .contact_list a.contact_card_text:hover {
+    text-decoration: underline;
+    color: var(--primary-color) !important;
+}
 
-        .left .hobbies_item .item_image {
-            filter: invert(100%); /* Інвертує колір іконок на темному фоні */
-        }
-        .left .hobbies_item .item_text {
-            font-size: 0.9rem;
-            margin-bottom: 0;
-        }
+.left .hobbies_item .item_image {
+    filter: invert(100%); /* Інвертує колір іконок на темному фоні */
+}
+.left .hobbies_item .item_text {
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
 
-        /* Додаткові стилі для секції мов, щоб імітувати вигляд на зображенні */
-        .language_item {
-            margin-bottom: 1rem;
-        }
+/* Стилі для секції мов */
+.language_item .progress-bar {
+    height: 5px;
+    background-color: var(--secondary-color);
+}
 
-        .language_item .progress-bar {
-            height: 5px; /* Тонша смужка прогресу */
-            background-color: var(--secondary-color); /* Колір смужки */
-        }
-
-        .language_item .progress {
-            background-color: rgba(255, 255, 255, 0.1); /* Фон для смужки */
-            border-radius: 0; /* Прибрати заокруглення */
-        }
+.language_item .progress {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 0;
+}
