@@ -1,0 +1,40 @@
+{
+  "personal": {
+    "firstName": "Jhon",
+    "lastName": "Abirar",
+    "position": "UI Designer",
+    "aboutMe": "Lorem ipsum dolor a consectetur adipiscing elitse eiusmod tempor incididunt labore dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo",
+    "email": "urname@gmail.com",
+    "phone": "+000 123 456 789"
+  },
+  "education": [
+    {
+      "major": "Enter your major (Master)",
+      "university": "Name Of Your University 2005-2009"
+    },
+    {
+      "major": "Enter your major (Bachelor)",
+      "university": "Name Of Your University 2009-2011"
+    }
+  ],
+  "experience": [
+    {
+      "title": "Senior Job Position Here",
+      "period": "Present",
+      "location": "Company Name / Location",
+      "description": "Lorem ipsum dolor sit amet, this isthis is a thena consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."
+    },
+    {
+      "title": "Junior Job Position Here",
+      "period": "2017 - 2019",
+      "location": "Another Company / City",
+      "description": "Lorem ipsum dolor sit amet, this isthis is a thena consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."
+    }
+  ],
+  "expertise": [
+    { "skill": "Adobe Photoshop", "level": "90%" },
+    { "skill": "Adobe Illustrator", "level": "80%" },
+    { "skill": "Adobe Indesign", "level": "70%" },
+    { "skill": "PowerPoint", "level": "95%" }
+  ]
+}

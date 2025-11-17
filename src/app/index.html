@@ -1,45 +1,321 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🛡️ GULP: Технології Незалежності 🇺🇦</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resume |van</title>
 
-    <link rel="preload" href="css/style.min.css" as="style">
-    <link rel="stylesheet" href="css/style.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+
+    <link href="css/style.min.css" rel="stylesheet" />
+    <link href="css/index.min.css" rel="stylesheet" />
+
 </head>
+
 <body>
+
+@@include('components/header.html')
+
 <div class="container">
-    <header>
-        <h1>🔥 Gulp — Наш Інструмент Технологічної Перемоги! 🇺🇦</h1>
-        <p class="dedication">Присвята нашим Захисникам, які дають нам можливість працювати і створювати майбутнє.</p>
-        <p>Цей проєкт демонструє <strong>професійний, високопродуктивний Gulp-пайплайн</strong>, що відповідає світовим стандартам якості.</p>
-    </header>
+    <div class="content">
+        <section class="left">
+            <div class="addres">
+                <h3 class="addres__title">Address</h3>
+                <p class="addres__description">SS Sterrt City/Zip Code - 456</p>
+            </div>
+            <div class="photo">
+                <img
+                        class="photo_image"
+                        src="./img/labwork07.jpg"
+                        alt="profile picture"
+                />
+            </div>
+            <div class="contact">
+                <h3 class="left_title contact__title">contact</h3>
 
-    <main>
-        <h2>LCP-оптимізація та Адаптивність: Демонстрація Gulp</h2>
+                <div class="contact_card">
+                    <p class="contact_card_title">Phone</p>
+                    <a class="contact_card_text" href="tel:+000 123 456 789"
+                    >+000 123 456 789</a
+                    >
+                </div>
+                <div class="contact_card">
+                    <p class="contact_card_title">Email</p>
+                    <a class="contact_card_text" href="mailto: urname@gmail.com"
+                    >urname@gmail.com</a
+                    >
+                </div>
+                <div class="contact_card">
+                    <p class="contact_card_title">Website</p>
+                    <a class="contact_card_text" href="urwebsitename.com"
+                    >urwebsitename.com</a
+                    >
+                </div>
 
-        <picture>
-            <source srcset="imgs/My photo.avif" type="image/avif">
-            <source srcset="imgs/My photo.webp" type="image/webp">
-            <img
-                    src="imgs/My photo.jpg"
-                    alt="Український фахівець ІТ"
-                    style="max-width: 100%; height: auto; border: 5px solid #FFD500; border-radius: 12px; display: block; margin: 20px auto;"
-                    title="Кожен на своєму фронті! Слава Україні!"
-            >
-        </picture>
+            </div>
+            <div class="reference">
+                <h3 class="left_title reference_title">reference</h3>
+                <div>
+                    <p class="reference_name">Sara Taylore</p>
+                    <p class="reference_description">Director I Company Name</p>
+                    <a class="reference_description" href="tel:+1 234 56789"
+                    >T : +1 234 56789</a
+                    >
+                </div>
+            </div>
+            <div class="hobbies">
+                <h3 class="left_title hobbies_title">hobbies</h3>
+                <div class="hobbies_list">
+                    <div class="hobbies_item">
+                        <img class="item_image" src="./img/travel.png" alt="" />
+                        <p class="item_text">Travel</p>
+                    </div>
+                    <div class="hobbies_item">
+                        <img class="item_image" src="./img/music.png" alt="" />
+                        <p class="item_text">Music</p>
+                    </div>
+                    <div class="hobbies_item">
+                        <img class="item_image" src="./img/writing.png" alt="" />
+                        <p class="item_text">Writing</p>
+                    </div>
+                    <div class="hobbies_item">
+                        <img class="item_image" src="./img/chess.png" alt="" />
+                        <p class="item_text">Chess</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="right">
+            <div class="header">
+                <h1 class="header_title">jhon <br /><span>abirar</span></h1>
+                <p class="header__text">ui designer</p>
+            </div>
+            <div class="aboutme">
 
-        <h3>Ключові показники професійного Gulp-збирання:</h3>
-        <ul>
-            <li><strong>Швидкість (LCP-метра):</strong> Зображення конвертовані у WebP/AVIF та завантажуються асинхронно.</li>
-            <li><strong>Якість коду:</strong> SCSS/CSS мінімізований та має <strong>Autoprefixer</strong> для повної кросбраузерності.</li>
-            <li><strong>Ефективність:</strong> JS об'єднаний та завантажується з атрибутом <code>defer</code>.</li>
-            <li><strong>Зручність:</strong> Миттєве оновлення коду завдяки <strong>BrowserSync (Live Reload)</strong>.</li>
-        </ul>
-    </main>
+                <h3 class="left_title roll">about me</h3>
+                <div class=" roll-block"  id="about-me-container">
 
-    <script src="js/script.min.js" defer></script>
+                    <p class="aboutme_text">
+                        Lorem ipsum dolor a consectetur adipiscing elitse eiusmod tempor
+                        incididunt labore dolore magna aliqua. Quis ipsum suspendisse
+                        ultrices gravida. Risus commodo
+                    </p>
+                </div>
+
+            </div>
+            <div class="education">
+                <h3 class="left_title roll">education</h3>
+                <div class="education_list roll-block" id="education-container">
+
+
+                    <div class="education_card">
+                        <h4 class="education_card__title">Enter your major</h4>
+                        <p class="education_card__text">
+                            Name Of Your University 2005-2009
+                    </div>
+                    <div class="education_card">
+                        <h4 class="education_card__title">Enter your major</h4>
+                        <p class="education_card__text">
+                            Name Of Your University 2009-2011
+                        </p>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="experience">
+                <h3 class="left_title roll">experience</h3>
+                <div class="experience_list roll-block">
+
+                    <div class="experience_card">
+                        <h4 class="experience_card__title">Enter Job Position Here</h4>
+                        <h5 class="experience_card__subtitle">
+                            <span>Present</span> Company Name / Location
+                        </h5>
+                        <p class="experience_card__text">
+                            Lorem ipsum dolor sit amet, this isthis is a thena consectetur
+                            adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                        </p>
+                    </div>
+                    <div class="experience_card">
+                        <h4 class="experience_card__title">Enter Job Position Here</h4>
+                        <h5 class="experience_card__subtitle">
+                            <span>2017 - 2019</span> Company Name / Location
+                        </h5>
+                        <p class="experience_card__text">
+                            Lorem ipsum dolor sit amet, this isthis is a thena consectetur
+                            adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="expertise">
+                <h2 class="left_title">Expertise</h2>
+                <div class="expertise__items">
+                    <div class="expertise__item">
+                        <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                width="150px"
+                                height="150px"
+                                viewBox="0 0 279 278"
+                        >
+                            <path
+                                    fill-rule="evenodd"
+                                    stroke="rgb(225, 225, 225)"
+                                    stroke-width="20px"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="miter"
+                                    fill="none"
+                                    d="M131.513,29.986 C187.578,29.986 233.027,75.435 233.027,131.499 C233.027,187.564 187.578,233.013 131.513,233.013 C75.449,233.013 29.1000,187.564 29.1000,131.499 C29.1000,75.435 75.449,29.986 131.513,29.986 Z"
+                            />
+                            <path
+                                    fill-rule="evenodd"
+                                    stroke="rgb(255, 255, 255)"
+                                    stroke-width="30px"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="miter"
+                                    fill="none"
+                                    d="M194.629,211.011 C177.301,224.785 155.368,233.013 131.513,233.013 C75.449,233.013 29.1000,187.564 29.1000,131.499 C29.1000,75.435 75.449,29.986 131.513,29.986 C187.578,29.986 233.027,75.435 233.027,131.499 "
+                            />
+                            <path
+                                    fill-rule="evenodd"
+                                    stroke="rgb(219, 83, 38)"
+                                    stroke-width="20px"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="miter"
+                                    fill="none"
+                                    d="M194.629,211.011 C177.301,224.785 155.368,233.013 131.513,233.013 C75.449,233.013 29.1000,187.564 29.1000,131.499 C29.1000,75.435 75.449,29.986 131.513,29.986 C187.578,29.986 233.027,75.435 233.027,131.499 "
+                            />
+                        </svg>
+                        <p class="expertise__text">Adobe Photoshop</p>
+                    </div>
+                    <div class="expertise__item">
+                        <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                width="150px"
+                                height="150px"
+                                viewBox="0 0 279 278"
+                        >
+                            <path
+                                    fill-rule="evenodd"
+                                    stroke="rgb(225, 225, 225)"
+                                    stroke-width="20px"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="miter"
+                                    fill="none"
+                                    d="M132.487,29.986 C188.551,29.986 234.000,75.435 234.000,131.499 C234.000,187.564 188.551,233.013 132.487,233.013 C76.422,233.013 30.973,187.564 30.973,131.499 C30.973,75.435 76.422,29.986 132.487,29.986 Z"
+                            />
+                            <path
+                                    fill-rule="evenodd"
+                                    stroke="rgb(255, 255, 255)"
+                                    stroke-width="30px"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="miter"
+                                    fill="none"
+                                    d="M172.790,224.697 C160.435,230.047 146.807,233.013 132.487,233.013 C76.422,233.013 30.973,187.564 30.973,131.499 C30.973,75.435 76.422,29.986 132.487,29.986 C188.551,29.986 234.000,75.435 234.000,131.499 "
+                            />
+                            <path
+                                    fill-rule="evenodd"
+                                    stroke="rgb(219, 83, 38)"
+                                    stroke-width="20px"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="miter"
+                                    fill="none"
+                                    d="M172.790,224.697 C160.435,230.047 146.807,233.013 132.487,233.013 C76.422,233.013 30.973,187.564 30.973,131.499 C30.973,75.435 76.422,29.986 132.487,29.986 C188.551,29.986 234.000,75.435 234.000,131.499 "
+                            />
+                        </svg>
+                        <p class="expertise__text">Adobe Illustrator</p>
+                    </div>
+                    <div class="expertise__item">
+                        <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                width="150px"
+                                height="150px"
+                                viewBox="0 0 279 278"
+                        >
+                            <path
+                                    fill-rule="evenodd"
+                                    stroke="rgb(225, 225, 225)"
+                                    stroke-width="20px"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="miter"
+                                    fill="none"
+                                    d="M132.460,29.986 C188.524,29.986 233.974,75.435 233.974,131.499 C233.974,187.564 188.524,233.013 132.460,233.013 C76.396,233.013 30.946,187.564 30.946,131.499 C30.946,75.435 76.396,29.986 132.460,29.986 Z"
+                            />
+                            <path
+                                    fill-rule="evenodd"
+                                    stroke="rgb(255, 255, 255)"
+                                    stroke-width="30px"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="miter"
+                                    fill="none"
+                                    d="M132.460,233.013 C76.396,233.013 30.946,187.564 30.946,131.499 C30.946,75.435 76.396,29.986 132.460,29.986 C188.524,29.986 233.974,75.435 233.974,131.499 "
+                            />
+                            <path
+                                    fill-rule="evenodd"
+                                    stroke="rgb(219, 83, 38)"
+                                    stroke-width="20px"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="miter"
+                                    fill="none"
+                                    d="M132.460,233.013 C76.396,233.013 30.946,187.564 30.946,131.499 C30.946,75.435 76.396,29.986 132.460,29.986 C188.524,29.986 233.974,75.435 233.974,131.499 "
+                            />
+                        </svg>
+                        <p class="expertise__text">Adobe Indesign</p>
+                    </div>
+                    <div class="expertise__item">
+                        <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                width="150px"
+                                height="150px"
+                                viewBox="0 0 279 278"
+                        >
+                            <path
+                                    fill-rule="evenodd"
+                                    stroke="rgb(225, 225, 225)"
+                                    stroke-width="20px"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="miter"
+                                    fill="none"
+                                    d="M131.579,29.986 C187.644,29.986 233.093,75.435 233.093,131.499 C233.093,187.564 187.644,233.013 131.579,233.013 C75.515,233.013 30.066,187.564 30.066,131.499 C30.066,75.435 75.515,29.986 131.579,29.986 Z"
+                            />
+                            <path
+                                    fill-rule="evenodd"
+                                    stroke="rgb(255, 255, 255)"
+                                    stroke-width="30px"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="miter"
+                                    fill="none"
+                                    d="M168.970,225.905 C157.399,230.492 144.783,233.013 131.579,233.013 C75.515,233.013 30.066,187.564 30.066,131.499 C30.066,75.435 75.515,29.986 131.579,29.986 C187.644,29.986 233.093,75.435 233.093,131.499 "
+                            />
+                            <path
+                                    fill-rule="evenodd"
+                                    stroke="rgb(219, 83, 38)"
+                                    stroke-width="20px"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="miter"
+                                    fill="none"
+                                    d="M168.970,225.905 C157.399,230.492 144.783,233.013 131.579,233.013 C75.515,233.013 30.066,187.564 30.066,131.499 C30.066,75.435 75.515,29.986 131.579,29.986 C187.644,29.986 233.093,75.435 233.093,131.499 "
+                            />
+                        </svg>
+                        <p class="expertise__text">Power<br>Point</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 </div>
+
+
+@@include('components/footer.html')
+
+<script src="js/bootstrap.bundle.min.js"></script>
+
+<script src="js/all.min.js"></script>
 </body>
 </html>

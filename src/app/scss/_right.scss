@@ -1,0 +1,221 @@
+@use 'config'; // Імпортуємо змінні та міксини
+
+// =========================================================
+// ✏️ СТИЛІ ПРАВОЇ КОЛОНКИ
+// =========================================================
+
+.right {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  padding: 0px 0;
+}
+
+.header {
+  margin-bottom: 50px;
+  padding: 0 60px;
+}
+
+.header_title {
+  font-family: "Bebas Neue", serif;
+  font-size: 80px;
+  letter-spacing: 5px;
+  font-weight: 200;
+  color: #22222d;
+  margin: 0;
+  margin-bottom: 20px;
+  margin-top: 70px;
+}
+
+.header_title span {
+  font-family: "Bebas Neue", serif;
+  font-size: 80px;
+  letter-spacing: 5px;
+  font-weight: 700;
+  color: #22222d;
+}
+
+.header_title span::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 3px;
+  background-color: config.$primary-color;
+  margin-top: 10px;
+}
+
+.header__text {
+  font-family: "Bebas Neue", serif;
+  font-size: 30px;
+  letter-spacing: 8px;
+  color: #22222d;
+}
+
+.aboutme {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 0 60px;
+}
+
+.aboutme_text {
+  font-family: "Poppins", sans-serif;
+  width: 800px;
+  font-size: 20px;
+  letter-spacing: 3px;
+  line-height: 35px;
+  color: #22222d;
+}
+
+.education {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  padding: 0 60px;
+}
+
+.education_list {
+  display: flex;
+  gap: 200px;
+}
+
+.education_card {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 200px;
+}
+
+.education_card__title {
+  font-family: "Open Sans", serif;
+  font-size: 20px;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.education_card__text {
+  font-family: "Open Sans", serif;
+  font-size: 17px;
+  margin-bottom: 5px;
+  line-height: 28px;
+}
+
+.experience {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 0 60px;
+}
+
+.experience_list {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.experience_card {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.experience_card__title {
+  font-family: "Open Sans", serif;
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.experience_card__subtitle {
+  font-family: "Open Sans", serif;
+  font-size: 17px;
+  align-items: center;
+}
+
+.experience_card__subtitle span {
+  font-family: "Open Sans", serif;
+  background-color: config.$primary-color;
+  font-size: 15px;
+  padding: 0 10px;
+  color: #fff;
+  border-radius: 5px;
+  margin-right: 10px;
+  font-weight: 400;
+}
+
+.experience_card__text {
+  font-family: "Open Sans", serif;
+  font-size: 17px;
+  margin-bottom: 5px;
+  line-height: 28px;
+  width: 550px;
+}
+
+// ----------------------------------------------------
+// 🚀 СТИЛІ ДЛЯ EXPERTISE (фінальна корекція: вирівнювання та відступи)
+// ----------------------------------------------------
+.expertise {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  padding: 0 60px;
+}
+
+.expertise__title {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 24px;
+  letter-spacing: 2px;
+  /* КОРИГУЄМО: Опускаємо заголовок на 30px вниз */
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.expertise__items {
+  display: flex;
+  flex-wrap: wrap;
+  /* ⬅️ ВИРІВНЮВАННЯ: Притискає елементи до лівого краю (який заданий padding: 60px) */
+  justify-content: flex-start;
+  align-items: center;
+  /* 🤏 Мінімальний проміжок між колами */
+  gap: 10px;
+  margin-top: 25px;
+}
+
+.expertise__item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.expertise__text {
+  position: absolute;
+  top: 50%;
+  left: 47%;
+  transform: translate(-50%, -50%);
+  font-family: "Poppins", serif;
+  font-size: 14px;
+  margin-top: 0;
+  text-align: center;
+  max-width: 80px; /* Додаткова корекція, якщо текст занадто широкий */
+}
+
+.progress-ring {
+  position: relative;
+  transform: rotate(-90deg);
+}
+
+.progress-ring__background {
+  fill: none;
+  stroke: #ddd;
+  stroke-width: 10;
+}
+
+.progress-ring__progress {
+  fill: none;
+  stroke: config.$primary-color;
+  stroke-width: 10;
+  stroke-linecap: round;
+  stroke-dasharray: 283;
+  stroke-dashoffset: 283;
+  transition: stroke-dashoffset 0.6s ease-out;
+}

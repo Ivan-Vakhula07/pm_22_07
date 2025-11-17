@@ -8,6 +8,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.21",
+    "bootstrap": "^5.3.8",
     "browser-sync": "^2.29.3",
     "del": "^8.0.1",
     "gulp": "^4.0.2",
@@ -23,6 +24,9 @@
     "gulp-uglify": "^3.0.2",
     "gulp-uglify-es": "^3.0.0",
     "postcss": "^8.4.21",
-    "sass": "^1.93.2"
+    "sass": "^1.94.0"
+  },
+  "dependencies": {
+    "gulp-clean": "^0.4.0"
   }
 }
