@@ -1,0 +1,18 @@
+### 2. Базовий шаблон: `src/app/components/base.html`
+
+Тепер цей файл відповідає лише за структуру `<html>`, `<body>` та головний контейнер.
+
+```html:Base Structure:src/app/components/base.html
+<!DOCTYPE html>
+<html lang="uk">
+
+@@include('header.html')
+
+<body>
+<div class="container my-5">
+    <div class="row content shadow-lg rounded">
+
+        @@include('left.html')         @@include('right.html')        </div>
+</div>
+
+@@include('footer_scripts.html')       ```eof

@@ -1,6 +1,6 @@
 // Імпорти: Всі необхідні модулі Gulp
 const gulp = require('gulp');
-const { src, dest } = require('gulp');
+const { src, dest, series, parallel } = require('gulp'); // Додано series та parallel для читабельності
 const postcss = require('gulp-postcss');
 const sass = require('gulp-sass')(require('sass'));
 const cssnano = require('cssnano');
@@ -10,6 +10,7 @@ const browserSync = require('browser-sync').create();
 const concat = require('gulp-concat');
 const file_include = require('gulp-file-include');
 const imageminOriginal = require('gulp-imagemin');
+
 // Динамічний імпорт для gulp-imagemin (Ваш код, залишаємо для сумісності)
 async function getImagemin() {
     const imagemin = await import('gulp-imagemin');
@@ -48,7 +49,7 @@ gulp.task('styles', () => {
         .pipe(postcss([cssnano()])) // Мінімізація CSS
         .pipe(rename({ suffix: '.min' }))
         .pipe(dest('dist/css'))
-        // Оновлення стилів без перезавантаження сторінки
+        // Оновлення стилів без перезавантаження сторінки (BrowserSync stream)
         .pipe(browserSync.stream());
 });
 
@@ -94,7 +95,8 @@ gulp.task('data', () => {
 gulp.task('watch', () => {
     gulp.watch('src/app/scss/**/*.scss', gulp.series('styles'));
     gulp.watch('src/app/js/*.js', gulp.series('uglify'));
-    gulp.watch(['src/app/index.html', 'src/app/html/*.html'], gulp.series('html'));
+    // 📢 ВИПРАВЛЕНО: Відстежуємо головний файл та ВСІ HTML-компоненти
+    gulp.watch(['src/app/index.html', 'src/app/components/**/*.html'], gulp.series('html'));
     gulp.watch('src/data/data.json', gulp.series('data'));
     gulp.watch('src/app/img/*', gulp.series('img'));
     // Bootstrap файли не відстежуються, оскільки вони є зовнішніми бібліотеками
@@ -116,4 +118,4 @@ gulp.task('default', gulp.series(
     gulp.parallel('html', 'styles', 'uglify', 'img', 'data', 'bootstrap-css', 'bootstrap-js'),
     // Запускаємо сервер та спостереження
     gulp.parallel('browser-sync', 'watch')
-))
+));
