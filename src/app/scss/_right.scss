@@ -1,61 +1,106 @@
 /* ========================================================= */
 /* _right.scss: СТИЛІ ПРАВОЇ КОЛОНКИ */
 /* ========================================================= */
-.right .header .header_title {
-    color: var(--primary-color) !important;
-}
-.right .header .header__text {
-    color: var(--dark-color) !important;
-}
+@use 'config';
 
-.right .left_title {
-    color: var(--dark-color);
-    font-weight: 700;
-    border-bottom: 2px solid var(--secondary-color);
-}
+.right {
+    .header {
+        .header_title {
+            color: config.$primary-color;
+        }
+        .header__text {
+            color: config.$dark-color;
+        }
+    }
 
-/* Секція Expertise (іконки) */
-.right .expertise__item .p-3 {
-    border-color: var(--secondary-color) !important;
-    background-color: var(--light-color) !important;
-}
+    .left_title {
+        color: config.$dark-color;
+        font-weight: 700;
+        border-bottom: 2px solid config.$secondary-color;
+    }
 
-/* Ефекти наведення на картки (ЛР №3) */
-.right .education_card, .right .experience_card {
-    transition: transform var(--transition-speed);
-    cursor: pointer;
-}
-.right .education_card:hover, .right .experience_card:hover {
-    transform: translateY(-3px);
-    /* Використання тіні на основі --primary-color */
-    box-shadow: 0 0.5rem 1rem rgba(43, 122, 120, 0.15) !important;
-}
+    /* Ефекти наведення на картки (ЛР №3) */
+    .education_card, .experience_card {
+        transition: transform config.$transition-speed;
+        cursor: pointer;
+        &:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0.5rem 1rem rgba(43, 122, 120, 0.15); /* Використання $primary-color */
+        }
+    }
 
-/* СТИЛІ ДЛЯ ЗГОРТАННЯ (COLLAPSE - якщо ви не виділяєте це в окремий файл) */
+    /* !!! НОВІ СТИЛІ ДЛЯ КРУГОВОГО ІНДИКАТОРА ПРОГРЕСУ (Expertise) !!! */
 
-.roll-block {
-    max-height: 500px; /* Початкова висота */
-    overflow: hidden;
-    transition: max-height var(--transition-speed) ease-in-out, opacity var(--transition-speed) ease-in-out;
-    opacity: 1;
-}
-.roll-block.is-closed {
-    max-height: 0;
-    opacity: 0;
-    margin-bottom: 0 !important;
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-}
+    /* Обгортка для центрованого тексту */
+    .expertise__item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
 
-.toggle-icon {
-    cursor: pointer;
-    transition: transform var(--transition-speed);
-}
-.d-flex.cursor-pointer {
-    cursor: pointer;
-}
-/* Обертання іконки для закритого стану */
-.roll-block.is-closed + .toggle-icon,
-.roll-block.is-closed ~ .toggle-icon {
-     transform: rotate(180deg);
+    /* Круговий прогрес */
+    .circular-progress {
+        position: relative;
+        height: config.$circle-size;
+        width: config.$circle-size;
+        border-radius: 50%;
+        /* фон для порожньої частини (використовуємо SCSS-змінні та `var(--p)` для JS) */
+        background: conic-gradient(
+            config.$progress-color var(--p),
+            config.$empty-progress-color var(--p)
+        );
+        display: grid;
+        place-items: center;
+        margin-bottom: 0.5rem;
+
+        /* Внутрішнє біле коло для створення 'обідка' */
+        &::before {
+            content: "";
+            position: absolute;
+            height: calc(config.$circle-size - 2 * config.$border-thickness);
+            width: calc(config.$circle-size - 2 * config.$border-thickness);
+            background-color: white;
+            border-radius: 50%;
+        }
+
+        /* Текст всередині індикатора */
+        .text-content {
+            position: absolute;
+            z-index: 1; /* Поверх внутрішнього білого кола */
+            font-size: 0.9rem;
+            line-height: 1.2;
+            padding: 10px;
+            font-weight: 500;
+            color: config.$dark-color;
+        }
+    }
+
+    /* 3. СТИЛІ ДЛЯ ЗГОРТАННЯ (ЛР №4) */
+    .roll-block {
+        max-height: 500px; /* Початкова висота */
+        overflow: hidden;
+        transition: max-height config.$transition-speed ease-in-out, opacity config.$transition-speed ease-in-out;
+        opacity: 1;
+        &.is-closed {
+            max-height: 0;
+            opacity: 0;
+            margin-bottom: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+    }
+
+    .toggle-icon {
+        cursor: pointer;
+        transition: transform config.$transition-speed;
+    }
+    .d-flex.cursor-pointer {
+        cursor: pointer; /* Для всієї області заголовка */
+    }
+    /* Обертання іконки для закритого стану */
+    .roll-block.is-closed + .toggle-icon,
+    .roll-block.is-closed ~ .toggle-icon {
+        transform: rotate(180deg);
+    }
 }

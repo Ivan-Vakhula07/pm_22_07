@@ -1,51 +1,64 @@
 /* ========================================================= */
 /* _left.scss: СТИЛІ ЛІВОЇ КОЛОНКИ */
 /* ========================================================= */
+@use 'config';
+@use 'mixins';
+
 .left {
-    background-color: var(--dark-color) !important;
-}
+    background-color: config.$dark-color;
 
-.left .left_title {
-    color: var(--secondary-color);
-    border-color: var(--secondary-color) !important;
-}
+    // ✅ ВИМОГА 3: Підключення міксіна
+    .left_title {
+        @include mixins.section-title-style;
 
-.left .photo_image {
-    border-color: var(--light-color) !important;
-    width: 100%;
-    max-width: 200px;
-    height: 200px;
-    object-fit: cover;
-}
+        // Перевизначаємо колір, який прийшов з міксіна, для темного фону
+        color: config.$secondary-color;
+        border-color: config.$secondary-color;
+    }
 
-.left .contact_list .list-group-item {
-    border-color: rgba(255, 255, 255, 0.1) !important;
-}
+    .photo_image {
+        border-color: config.$light-color;
+        width: 100%;
+        max-width: 200px;
+        height: 200px;
+        object-fit: cover;
+    }
 
-.left .contact_list a.contact_card_text {
-    text-decoration: none;
-    color: var(--secondary-color) !important;
-}
-.left .contact_list a.contact_card_text:hover {
-    text-decoration: underline;
-    color: var(--primary-color) !important;
-}
+    .contact_list {
+        // ✅ ВИМОГА 2: Вкладеність селекторів
+        .list-group-item {
+            border-color: rgba(255, 255, 255, 0.1);
+        }
 
-.left .hobbies_item .item_image {
-    filter: invert(100%); /* Інвертує колір іконок на темному фоні */
-}
-.left .hobbies_item .item_text {
-    font-size: 0.9rem;
-    margin-bottom: 0;
-}
+        a.contact_card_text {
+            text-decoration: none;
+            color: config.$secondary-color;
+            &:hover {
+                text-decoration: underline;
+                color: config.$primary-color;
+            }
+        }
+    }
 
-/* Стилі для секції мов */
-.language_item .progress-bar {
-    height: 5px;
-    background-color: var(--secondary-color);
-}
+    .hobbies_item {
+        .item_image {
+            filter: invert(100%);
+        }
+        .item_text {
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+    }
 
-.language_item .progress {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 0;
+    .language_item {
+        margin-bottom: 1rem;
+        .progress-bar {
+            height: 5px;
+            background-color: config.$secondary-color;
+        }
+        .progress {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 0;
+        }
+    }
 }

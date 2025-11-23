@@ -1,10 +1,19 @@
 /* ========================================================= */
 /* _config.scss: ЗМІННІ */
 /* ========================================================= */
-:root {
-    --primary-color: #2b7a78;
-    --secondary-color: #3aafa9;
-    --dark-color: #17252a;
-    --light-color: #def2f1;
-    --transition-speed: 0.3s;
-}
+// ✅ ВИМОГА 1: Створення змінних
+
+// Основні кольори
+$primary-color: #2b7a78;
+$secondary-color: #3aafa9;
+$dark-color: #17252a;
+$light-color: #def2f1;
+
+// Додаткові змінні
+$transition-speed: 0.3s;
+$header-margin-bottom: 20px;
+// Змінні для кругового прогресу
+$circle-size: 100px;
+$border-thickness: 10px;
+$progress-color: #f75c03;
+$empty-progress-color: #e0e0e0;
