@@ -3,6 +3,13 @@
 /* ========================================================= */
 @use 'config';
 
+// ✅ НОВА ВИМОГА: Визначення базового стилю для наслідування
+// Плейсхолдер-селектор для загальних властивостей карток
+%card-effect-base {
+    transition: transform config.$transition-speed;
+    cursor: pointer;
+}
+
 .right {
     .header {
         .header_title {
@@ -20,9 +27,20 @@
     }
 
     /* Ефекти наведення на картки (ЛР №3) */
-    .education_card, .experience_card {
-        transition: transform config.$transition-speed;
-        cursor: pointer;
+    .education_card {
+        // ✅ НОВА ВИМОГА: Наслідування стилів за допомогою @extend
+        @extend %card-effect-base;
+
+        &:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0.5rem 1rem rgba(43, 122, 120, 0.15); /* Використання $primary-color */
+        }
+    }
+
+    .experience_card {
+        // ✅ НОВА ВИМОГА: Наслідування стилів за допомогою @extend
+        @extend %card-effect-base;
+
         &:hover {
             transform: translateY(-3px);
             box-shadow: 0 0.5rem 1rem rgba(43, 122, 120, 0.15); /* Використання $primary-color */
